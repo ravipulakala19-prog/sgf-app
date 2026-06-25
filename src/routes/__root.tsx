@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import sgfLogo from "../assets/sgf-logo.jpeg.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/sgf/Navbar";
 import { Footer } from "../components/sgf/Footer";
