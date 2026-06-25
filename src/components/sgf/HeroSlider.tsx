@@ -61,7 +61,6 @@ const slides: Slide[] = [
 
 export function HeroSlider() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const go = useCallback((next: number) => {
@@ -69,14 +68,13 @@ export function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
     timer.current = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, 5000);
     return () => {
       if (timer.current) clearInterval(timer.current);
     };
-  }, [paused]);
+  }, []);
 
   return (
     <section
