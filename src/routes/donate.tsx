@@ -25,16 +25,12 @@ export const Route = createFileRoute("/donate")({
   component: Donate,
 });
 
-const supports = [
-  { icon: HeartPulse, label: "Emergency medical assistance" },
-  { icon: Droplets, label: "Life-saving blood donation support" },
-  { icon: GraduationCap, label: "Educational aid" },
-  { icon: LifeBuoy, label: "Disaster relief" },
-  { icon: Users, label: "Community welfare initiatives" },
-];
+const supportIcons = [HeartPulse, Droplets, GraduationCap, LifeBuoy, Users];
 
 function Donate() {
   const { donate } = siteConfig;
+  const t = useT();
+  const supports = supportIcons.map((icon, i) => ({ icon, label: t.donate.supports[i] }));
 
   return (
     <>
