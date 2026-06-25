@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Navbar } from "../components/sgf/Navbar";
+import { Footer } from "../components/sgf/Footer";
+import { FloatingDonate } from "../components/sgf/FloatingDonate";
 
 function NotFoundComponent() {
   return (
