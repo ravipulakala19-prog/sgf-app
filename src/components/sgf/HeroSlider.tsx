@@ -117,22 +117,12 @@ export function HeroSlider() {
                   </Link>
                 </div>
 
-                {/* Cross-line partition divider (tricolor) */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden h-px -translate-y-1/2 bg-gradient-to-r from-saffron via-background to-green md:left-1/2 md:right-auto md:top-0 md:block md:h-full md:w-px md:translate-y-0 md:bg-gradient-to-b"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-3 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-sm bg-saffron shadow-sm ring-2 ring-background md:block"
-                />
-
-                {/* Image */}
-                <div className="order-1 md:order-2">
+                {/* Image with diagonal cross partition into the content */}
+                <div className="order-1 md:order-2 md:-ml-[12%]">
                   <img
                     src={slide.src}
                     alt={slide.title}
-                    className="h-48 w-full object-cover sm:h-64 md:h-full md:min-h-[20rem]"
+                    className="h-48 w-full object-cover diagonal-partition sm:h-64 md:h-full md:min-h-[20rem]"
                     fetchPriority={i === 0 ? "high" : "low"}
                     loading={i === 0 ? "eager" : "lazy"}
                   />
