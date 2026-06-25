@@ -83,14 +83,12 @@ export function HeroSlider() {
       className="relative bg-background py-8 sm:py-10"
       aria-roledescription="carousel"
       aria-label="Special Guys Foundation highlights"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="relative overflow-hidden">
         {/* Track: each slide is 80% wide, centered with 10% peek on each side */}
         <div
-          className="flex transition-[margin] duration-700 ease-out"
-          style={{ marginLeft: `calc(10% - ${index * 80}%)` }}
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(calc(10% - ${index * 80}%))` }}
         >
           {slides.map((slide, i) => (
             <div
