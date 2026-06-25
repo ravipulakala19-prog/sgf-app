@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark, Smartphone, QrCode } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({

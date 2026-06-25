@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
+import { useT } from "@/lib/i18n";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 export const Route = createFileRoute("/volunteer")({
@@ -28,16 +29,11 @@ export const Route = createFileRoute("/volunteer")({
   component: Volunteer,
 });
 
-const ways = [
-  { icon: Droplets, label: "Participate in blood donation drives" },
-  { icon: Search, label: "Help identify families in need" },
-  { icon: Megaphone, label: "Organize awareness campaigns" },
-  { icon: HandCoins, label: "Support fundraising initiatives" },
-  { icon: LifeBuoy, label: "Assist during emergencies" },
-  { icon: Sparkles, label: "Inspire others to serve" },
-];
+const wayIcons = [Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles];
 
 function Volunteer() {
+  const t = useT();
+  const ways = wayIcons.map((icon, i) => ({ icon, label: t.volunteer.ways[i] }));
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -45,13 +41,12 @@ function Volunteer() {
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal className="max-w-3xl">
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Volunteer</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.volunteer.label}</p>
             <h1 className="mt-2 font-heading text-4xl font-extrabold text-blue sm:text-5xl">
-              Every helping hand creates a ripple of hope
+              {t.volunteer.title}
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">
-              Whether you're a student, professional, entrepreneur, or retiree, you can become part of SGF's mission.
-              Together, we can transform compassion into action.
+              {t.volunteer.intro}
             </p>
           </Reveal>
         </div>
@@ -61,8 +56,8 @@ function Volunteer() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <Reveal>
-              <h2 className="font-heading text-3xl font-bold text-blue">Ways you can help</h2>
-              <p className="mt-3 text-muted-foreground">As a volunteer, you can:</p>
+              <h2 className="font-heading text-3xl font-bold text-blue">{t.volunteer.waysTitle}</h2>
+              <p className="mt-3 text-muted-foreground">{t.volunteer.waysDesc}</p>
             </Reveal>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {ways.map((w, i) => (
@@ -93,14 +88,14 @@ function Volunteer() {
           {/* Sign-up form */}
           <Reveal delay={100}>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
-              <h2 className="font-heading text-2xl font-bold text-blue">Join the team</h2>
+              <h2 className="font-heading text-2xl font-bold text-blue">{t.volunteer.formTitle}</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Fill in your details and our coordinators will reach out to you.
+                {t.volunteer.formDesc}
               </p>
               {submitted ? (
                 <div className="mt-6 flex items-center gap-3 rounded-xl bg-green/10 p-5 text-green" role="status">
                   <Check className="size-6 shrink-0" aria-hidden="true" />
-                  <p className="font-medium">Thank you for signing up! We'll be in touch soon.</p>
+                  <p className="font-medium">{t.volunteer.thanks}</p>
                 </div>
               ) : (
                 <form
@@ -111,29 +106,29 @@ function Volunteer() {
                   }}
                 >
                   <div>
-                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">Full name</label>
+                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName}</label>
                     <input id="v-name" type="text" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">Phone</label>
+                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone}</label>
                       <input id="v-phone" type="tel" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
                     </div>
                     <div>
-                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">Email</label>
+                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email}</label>
                       <input id="v-email" type="email" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="v-city" className="text-sm font-medium text-foreground">City / Town</label>
+                    <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
                     <input id="v-city" type="text" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
                   </div>
                   <div>
-                    <label htmlFor="v-msg" className="text-sm font-medium text-foreground">How would you like to help?</label>
+                    <label htmlFor="v-msg" className="text-sm font-medium text-foreground">{t.volunteer.helpHow}</label>
                     <textarea id="v-msg" rows={3} className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
                   </div>
                   <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-bold text-saffron-foreground transition-transform hover:scale-105">
-                    Sign Up to Volunteer <ArrowRight className="size-5" />
+                    {t.volunteer.signUp} <ArrowRight className="size-5" />
                   </button>
                 </form>
               )}
@@ -144,12 +139,12 @@ function Volunteer() {
 
       <section className="bg-blue">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6">
-          <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">Prefer to support financially?</h2>
-          <p className="mt-3 text-white/80">Your donation is another powerful way to make a difference.</p>
+          <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">{t.volunteer.supportTitle}</h2>
+          <p className="mt-3 text-white/80">{t.volunteer.supportDesc}</p>
           <Link to="/donate" className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 font-bold text-red-foreground transition-transform hover:scale-105">
-            Donate Now <ArrowRight className="size-5" />
+            {t.volunteer.donateNow} <ArrowRight className="size-5" />
           </Link>
-          <p className="mt-4 text-sm text-white/70">Questions? Call us at {siteConfig.contact.phone}</p>
+          <p className="mt-4 text-sm text-white/70">{t.volunteer.questionsPre}{siteConfig.contact.phone}</p>
         </div>
       </section>
     </>

@@ -74,6 +74,11 @@ const en = {
       "Every helping hand creates a ripple of hope. Join a network of people transforming compassion into action across Srikakulam District.",
     joinUs: "Join Us",
     donateCardTitle: "Your Contribution Saves Lives",
+    donateCardDesc:
+      "Every donation — big or small — helps us reach more families and create lasting impact where it matters most.",
+    donateNow: "Donate Now",
+    mediaStrip:
+      "Our work has been featured in regional newspapers and community publications, recognizing SGF's consistent humanitarian efforts.",
     seeMedia: "See our media coverage",
     newsletterTitle: "Stay Connected",
     newsletterDesc: "Get updates on our blood camps, relief drives, and ways you can help.",
@@ -167,6 +172,9 @@ const en = {
     title: "Real change, one family at a time",
     intro:
       "Through the dedication of volunteers and the generosity of donors, SGF has positively impacted hundreds of families across Srikakulam District and surrounding regions.",
+    accomplishedTitle: "What we've accomplished",
+    accomplishedDesc:
+      "Many of these initiatives have also received recognition in regional newspapers and media, highlighting the trust SGF has earned within the community.",
     achievements: [
       "Financial assistance for critical medical treatments",
       "Organizing multiple blood donation camps",
@@ -214,6 +222,9 @@ const en = {
     city: "City / Town",
     helpHow: "How would you like to help?",
     signUp: "Sign Up to Volunteer",
+    supportTitle: "Prefer to support financially?",
+    supportDesc: "Your donation is another powerful way to make a difference.",
+    donateNow: "Donate Now",
     questionsPre: "Questions? Call us at ",
   },
   donate: {
@@ -367,6 +378,11 @@ const te: Dict = {
       "ప్రతి సహాయ హస్తం ఆశ యొక్క అలను సృష్టిస్తుంది. శ్రీకాకుళం జిల్లా వ్యాప్తంగా కరుణను కార్యాచరణగా మార్చే ప్రజల నెట్‌వర్క్‌లో చేరండి.",
     joinUs: "మాతో చేరండి",
     donateCardTitle: "మీ విరాళం ప్రాణాలను కాపాడుతుంది",
+    donateCardDesc:
+      "ప్రతి విరాళం — చిన్నదైనా పెద్దదైనా — మరిన్ని కుటుంబాలకు చేరువ కావడానికి మరియు అవసరమైన చోట శాశ్వత ప్రభావాన్ని సృష్టించడానికి సహాయపడుతుంది.",
+    donateNow: "ఇప్పుడే విరాళం",
+    mediaStrip:
+      "మా పని ప్రాంతీయ వార్తాపత్రికలు మరియు సమాజ ప్రచురణలలో ప్రముఖంగా ప్రచురించబడింది, SGF యొక్క స్థిరమైన మానవతా కృషిని గుర్తించింది.",
     seeMedia: "మా మీడియా కవరేజీని చూడండి",
     newsletterTitle: "మాతో అనుసంధానంగా ఉండండి",
     newsletterDesc: "మా రక్తదాన శిబిరాలు, సహాయ కార్యక్రమాలు మరియు మీరు సహాయపడే మార్గాల గురించి అప్‌డేట్‌లను పొందండి.",
@@ -460,6 +476,9 @@ const te: Dict = {
     title: "నిజమైన మార్పు, ఒక్కో కుటుంబం",
     intro:
       "వాలంటీర్ల అంకితభావం మరియు దాతల ఔదార్యం ద్వారా, శ్రీకాకుళం జిల్లా మరియు చుట్టుపక్కల ప్రాంతాలలోని వందలాది కుటుంబాలపై SGF సానుకూల ప్రభావం చూపింది.",
+    accomplishedTitle: "మేము సాధించినది",
+    accomplishedDesc:
+      "ఈ చొరవలలో చాలావరకు ప్రాంతీయ వార్తాపత్రికలు మరియు మీడియాలో గుర్తింపు పొందాయి, సమాజంలో SGF సంపాదించిన నమ్మకాన్ని చాటుతున్నాయి.",
     achievements: [
       "క్లిష్టమైన వైద్య చికిత్సలకు ఆర్థిక సహాయం",
       "అనేక రక్తదాన శిబిరాల నిర్వహణ",
@@ -507,6 +526,9 @@ const te: Dict = {
     city: "నగరం / పట్టణం",
     helpHow: "మీరు ఎలా సహాయపడాలనుకుంటున్నారు?",
     signUp: "వాలంటీర్‌గా నమోదు చేసుకోండి",
+    supportTitle: "ఆర్థికంగా మద్దతు ఇవ్వాలనుకుంటున్నారా?",
+    supportDesc: "మీ విరాళం మార్పు తీసుకురావడానికి మరో శక్తివంతమైన మార్గం.",
+    donateNow: "ఇప్పుడే విరాళం",
     questionsPre: "ప్రశ్నలా? మాకు కాల్ చేయండి ",
   },
   donate: {

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
+import { useT } from "@/lib/i18n";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 export const Route = createFileRoute("/about")({
@@ -36,29 +37,23 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const values = [
-  { icon: Heart, title: "Compassion", desc: "Every individual deserves dignity, respect, and timely assistance regardless of their background." },
-  { icon: ShieldCheck, title: "Integrity", desc: "We maintain transparency and accountability in every initiative and every donation received." },
-  { icon: HandHeart, title: "Service", desc: "Helping others is not an event — it is a lifelong responsibility." },
-  { icon: Users, title: "Unity", desc: "Communities become stronger when people work together." },
-  { icon: Handshake, title: "Trust", desc: "We build lasting relationships through honesty, responsibility, and genuine care." },
-  { icon: Sparkles, title: "Volunteerism", desc: "We believe ordinary people can create extraordinary change through collective action." },
-];
+const valueIcons = [Heart, ShieldCheck, HandHeart, Users, Handshake, Sparkles];
 
 function About() {
+  const t = useT();
+  const values = valueIcons.map((icon, i) => ({ icon, ...t.about.values[i] }));
   return (
     <>
       {/* Page header */}
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal className="max-w-3xl">
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">About Us</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.about.label}</p>
             <h1 className="mt-2 font-heading text-4xl font-extrabold text-blue sm:text-5xl">
-              Ordinary people doing extraordinary things together
+              {t.about.title}
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">
-              Special Guys Foundation (<span className="font-bold text-red">SGF</span>) is a registered social
-              service organization built by passionate young volunteers dedicated to creating meaningful change.
+              {t.about.intro}
             </p>
           </Reveal>
         </div>
@@ -68,20 +63,15 @@ function About() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Who We Are</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.about.whoLabel}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">
-              Compassion, integrity, and service
+              {t.about.whoTitle}
             </h2>
             <p className="mt-5 text-muted-foreground">
-              What began as a small initiative among friends has grown into a respected humanitarian organization
-              serving communities across Srikakulam District and surrounding regions. Our volunteers work tirelessly
-              to identify genuine cases requiring assistance and ensure that support reaches beneficiaries quickly and
-              transparently.
+              {t.about.whoP1}
             </p>
             <p className="mt-4 text-muted-foreground">
-              Every donation entrusted to SGF becomes an opportunity to save a life, educate a child, support a
-              struggling family, or inspire hope where it is needed most. Our strength lies not in our size but in our
-              commitment to compassion, integrity, and service.
+              {t.about.whoP2}
             </p>
           </Reveal>
           <Reveal delay={150}>
@@ -103,21 +93,18 @@ function About() {
       <section className="bg-blue">
         <div className="mx-auto max-w-4xl px-4 py-16 text-white sm:px-6 lg:py-24">
           <Reveal>
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Our Story</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.about.storyLabel}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold sm:text-4xl">
-              "If we have the ability to help someone today, why should we wait?"
+              {t.about.storyTitle}
             </h2>
             <p className="mt-6 text-white/85">
-              Seeing numerous families struggle to afford life-saving medical treatments, blood during emergencies,
-              educational necessities, and daily essentials, a group of socially conscious youth decided to act.
+              {t.about.storyP1}
             </p>
             <p className="mt-4 text-white/85">
-              Instead of waiting for others, they created a volunteer network capable of responding immediately to
-              emergencies. From helping a single patient to organizing district-wide blood donation camps, SGF has
-              grown into a movement powered by ordinary people doing extraordinary things together.
+              {t.about.storyP2}
             </p>
             <p className="mt-6 inline-block rounded-full bg-saffron px-6 py-2 font-heading font-bold text-saffron-foreground">
-              Humanity First.
+              {t.about.humanityFirst}
             </p>
           </Reveal>
         </div>
@@ -128,29 +115,23 @@ function About() {
         <div className="grid gap-8 md:grid-cols-2">
           <Reveal>
             <div className="h-full rounded-2xl border border-border bg-card p-8 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-blue">Our Mission</h2>
+              <h2 className="font-heading text-2xl font-bold text-blue">{t.about.missionTitle}</h2>
               <p className="mt-4 text-muted-foreground">
-                To improve the lives of vulnerable individuals and communities by providing timely humanitarian
-                assistance, promoting voluntary blood donation, supporting education, encouraging community
-                participation, and creating sustainable opportunities for people facing hardship.
+                {t.about.missionP1}
               </p>
               <p className="mt-4 text-muted-foreground">
-                We strive to ensure that no family feels alone during a crisis and that every individual has access to
-                hope, dignity, and compassionate support.
+                {t.about.missionP2}
               </p>
             </div>
           </Reveal>
           <Reveal delay={120}>
             <div className="h-full rounded-2xl border border-border bg-card p-8 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-blue">Our Vision</h2>
+              <h2 className="font-heading text-2xl font-bold text-blue">{t.about.visionTitle}</h2>
               <p className="mt-4 text-muted-foreground">
-                To build a compassionate society where every individual has access to emergency support, quality
-                healthcare assistance, educational opportunities, and a caring community that stands together during
-                difficult times.
+                {t.about.visionP1}
               </p>
               <p className="mt-4 text-muted-foreground">
-                We envision a future where kindness becomes a culture and every citizen actively participates in making
-                society stronger, healthier, and more inclusive.
+                {t.about.visionP2}
               </p>
             </div>
           </Reveal>
@@ -161,8 +142,8 @@ function About() {
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Our Values</p>
-            <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">What guides our work</h2>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.about.valuesLabel}</p>
+            <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">{t.about.valuesTitle}</h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((v, i) => (
@@ -183,16 +164,16 @@ function About() {
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:py-20">
         <Reveal>
-          <h2 className="font-heading text-3xl font-bold text-blue">Be part of the movement</h2>
+          <h2 className="font-heading text-3xl font-bold text-blue">{t.about.ctaTitle}</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Join {siteConfig.acronym} as a volunteer or donor and help us reach more families in need.
+            {t.about.ctaDescPre}{siteConfig.acronym}{t.about.ctaDescPost}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link to="/volunteer" className="inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-bold text-saffron-foreground transition-transform hover:scale-105">
-              Become a Volunteer <ArrowRight className="size-5" />
+              {t.about.becomeVolunteer} <ArrowRight className="size-5" />
             </Link>
             <Link to="/donate" className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 font-bold text-red-foreground transition-transform hover:scale-105">
-              Donate Now <ArrowRight className="size-5" />
+              {t.about.donateNow} <ArrowRight className="size-5" />
             </Link>
           </div>
         </Reveal>

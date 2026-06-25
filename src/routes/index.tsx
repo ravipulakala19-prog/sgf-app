@@ -20,6 +20,7 @@ import { Reveal } from "@/components/sgf/Reveal";
 import { HeroSlider } from "@/components/sgf/HeroSlider";
 import { CountUp } from "@/components/sgf/CountUp";
 import { siteConfig } from "@/lib/site-config";
+import { useT } from "@/lib/i18n";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -45,25 +46,15 @@ export const Route = createFileRoute("/")({
 
 const statIcons = [HeartPulse, Droplets, Activity, Building2];
 
-const programs = [
-  { icon: HeartPulse, title: "Emergency Medical Assistance", desc: "Immediate financial help and donor mobilization for patients in critical medical need." },
-  { icon: Droplets, title: "Blood Donation Services", desc: "An active network of voluntary blood donors and regular donation camps." },
-  { icon: GraduationCap, title: "Educational Support", desc: "School supplies, materials, and assistance for disadvantaged students." },
-  { icon: Users, title: "Community Welfare", desc: "Awareness campaigns, health drives, and rural welfare initiatives." },
-  { icon: LifeBuoy, title: "Disaster & Family Relief", desc: "Emergency relief and rehabilitation for families facing tragedy." },
-];
-
-const reasons = [
-  { icon: ShieldCheck, title: "Genuine Cases", desc: "Every request is carefully verified before assistance is provided." },
-  { icon: Clock, title: "Immediate Response", desc: "We prioritize urgent medical and humanitarian emergencies." },
-  { icon: HandHeart, title: "Volunteer Driven", desc: "Our dedicated volunteers work selflessly to maximize social impact." },
-  { icon: Eye, title: "Transparent Donations", desc: "Every contribution is used responsibly for community welfare." },
-  { icon: Award, title: "Community Trust", desc: "Years of consistent service have built strong community relationships." },
-];
+const programIcons = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
+const reasonIcons = [ShieldCheck, Clock, HandHeart, Eye, Award];
 
 function Home() {
+  const t = useT();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const programs = programIcons.map((icon, i) => ({ icon, ...t.home.programs[i] }));
+  const reasons = reasonIcons.map((icon, i) => ({ icon, ...t.home.reasons[i] }));
 
   return (
     <>
@@ -82,7 +73,7 @@ function Home() {
                 <span className="font-heading text-3xl font-extrabold sm:text-4xl">
                   <CountUp end={stat.value} suffix={stat.suffix} />
                 </span>
-                <span className="mt-1 text-sm text-white/80">{stat.label}</span>
+                <span className="mt-1 text-sm text-white/80">{t.stats[i]}</span>
               </Reveal>
             );
           })}
@@ -93,25 +84,21 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Who We Are</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.home.whoWeAreLabel}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">
-              Ordinary people doing extraordinary things together
+              {t.home.whoWeAreTitle}
             </h2>
             <p className="mt-5 text-muted-foreground">
-              Special Guys Foundation (<span className="font-bold text-red">SGF</span>) is a registered social
-              service organization established by passionate young volunteers dedicated to creating meaningful
-              change. What began as a small initiative among friends has grown into a respected humanitarian
-              organization serving communities across Srikakulam District and surrounding regions.
+              {t.home.whoWeAreP1Pre}<span className="font-bold text-red">SGF</span>{t.home.whoWeAreP1Post}
             </p>
             <p className="mt-4 text-muted-foreground">
-              Every donation entrusted to SGF becomes an opportunity to save a life, educate a child, support a
-              struggling family, or inspire hope where it is needed most.
+              {t.home.whoWeAreP2}
             </p>
             <Link
               to="/about"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-blue px-6 py-3 text-sm font-bold text-blue-foreground transition-transform hover:scale-105"
             >
-              Read Our Story <ArrowRight className="size-4" />
+              {t.home.readStory} <ArrowRight className="size-4" />
             </Link>
           </Reveal>
           <Reveal delay={150}>
@@ -133,9 +120,9 @@ function Home() {
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">What We Do</p>
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.home.whatWeDoLabel}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">
-              Five ways we serve our communities
+              {t.home.whatWeDoTitle}
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -151,7 +138,7 @@ function Home() {
                     to="/what-we-do"
                     className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-red transition-colors group-hover:gap-2"
                   >
-                    Learn more <ArrowRight className="size-4" />
+                    {t.home.learnMore} <ArrowRight className="size-4" />
                   </Link>
                 </article>
               </Reveal>
@@ -163,9 +150,9 @@ function Home() {
       {/* Why Choose SGF */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Why Choose SGF</p>
+          <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.home.whyLabel}</p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-blue sm:text-4xl">
-            Built on trust, driven by compassion
+            {t.home.whyTitle}
           </h2>
         </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
@@ -188,32 +175,30 @@ function Home() {
         <div className="grid overflow-hidden rounded-3xl shadow-lg md:grid-cols-2">
           <div className="flex flex-col justify-center gap-4 bg-saffron p-8 sm:p-12">
             <h3 className="font-heading text-2xl font-bold text-saffron-foreground sm:text-3xl">
-              Become a Volunteer
+              {t.home.volunteerCardTitle}
             </h3>
             <p className="text-saffron-foreground/90">
-              Every helping hand creates a ripple of hope. Join a network of people transforming compassion into
-              action across Srikakulam District.
+              {t.home.volunteerCardDesc}
             </p>
             <Link
               to="/volunteer"
               className="inline-flex w-fit items-center gap-2 rounded-full bg-blue px-6 py-3 text-sm font-bold text-blue-foreground transition-transform hover:scale-105"
             >
-              Join Us <ArrowRight className="size-4" />
+              {t.home.joinUs} <ArrowRight className="size-4" />
             </Link>
           </div>
           <div className="flex flex-col justify-center gap-4 bg-blue p-8 sm:p-12">
             <h3 className="font-heading text-2xl font-bold text-white sm:text-3xl">
-              Your Contribution Saves Lives
+              {t.home.donateCardTitle}
             </h3>
             <p className="text-white/85">
-              Every donation — big or small — helps us reach more families and create lasting impact where it
-              matters most.
+              {t.home.donateCardDesc}
             </p>
             <Link
               to="/donate"
               className="inline-flex w-fit items-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-red-foreground transition-transform hover:scale-105"
             >
-              Donate Now <ArrowRight className="size-4" />
+              {t.home.donateNow} <ArrowRight className="size-4" />
             </Link>
           </div>
         </div>
@@ -224,8 +209,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <Reveal className="flex flex-col items-center gap-6 text-center">
             <p className="max-w-2xl text-muted-foreground">
-              Our work has been featured in regional newspapers and community publications, recognizing SGF's
-              consistent humanitarian efforts.
+              {t.home.mediaStrip}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               {[1, 2, 3, 4].map((n) => (
@@ -238,7 +222,7 @@ function Home() {
               ))}
             </div>
             <Link to="/media" className="inline-flex items-center gap-1 text-sm font-bold text-red">
-              See our media coverage <ArrowRight className="size-4" />
+              {t.home.seeMedia} <ArrowRight className="size-4" />
             </Link>
           </Reveal>
         </div>
@@ -247,13 +231,13 @@ function Home() {
       {/* Newsletter */}
       <section className="bg-blue">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6">
-          <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">Stay Connected</h2>
+          <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">{t.home.newsletterTitle}</h2>
           <p className="mt-3 text-white/80">
-            Get updates on our blood camps, relief drives, and ways you can help.
+            {t.home.newsletterDesc}
           </p>
           {subscribed ? (
             <p className="mt-6 rounded-full bg-green px-6 py-3 font-medium text-green-foreground" role="status">
-              Thank you for subscribing! 💚
+              {t.home.newsletterThanks}
             </p>
           ) : (
             <form
@@ -270,14 +254,14 @@ function Home() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
+                placeholder={t.home.emailPlaceholder}
                 className="flex-1 rounded-full border border-white/20 bg-white px-5 py-3 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron"
               />
               <button
                 type="submit"
                 className="rounded-full bg-saffron px-6 py-3 font-bold text-saffron-foreground transition-transform hover:scale-105"
               >
-                Subscribe
+                {t.home.subscribe}
               </button>
             </form>
           )}
