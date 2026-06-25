@@ -14,17 +14,17 @@ export const siteConfig = {
   // Contact — EDIT THESE
   contact: {
     location: "Srikakulam District, Andhra Pradesh, India",
-    phone: "+91 00000 00000",
-    email: "info@specialguysfoundation.org",
-    whatsapp: "+91 00000 00000",
+    phone: "+91 89850 33300",
+    email: "specialguysfoundationsgf@gmail.com",
+    whatsapp: "+91 89850 33300",
   },
 
-  // Social links — EDIT THESE (placeholders)
+  // Social links — EDIT THESE
   social: {
-    facebook: "https://facebook.com/",
-    instagram: "https://instagram.com/",
-    youtube: "https://youtube.com/",
-    whatsapp: "https://wa.me/910000000000",
+    facebook: "https://www.facebook.com/joinwithsgf/",
+    instagram: "https://instagram.com/specialguysfoundation_sgf?utm_medium=copy_link",
+    telegram: "https://t.me/+ZTI6MTqiaBVkZDNl",
+    whatsapp: "https://wa.me/918985033300",
   },
 
   // Donation — EDIT THESE
