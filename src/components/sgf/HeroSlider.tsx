@@ -98,10 +98,10 @@ export function HeroSlider() {
               aria-hidden={i !== index}
             >
               <div
-                className={`relative grid items-stretch overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
+                className={`relative grid items-stretch overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-5 ${slide.tint}`}
               >
                 {/* Text */}
-                <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 lg:p-12">
+                <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 md:col-span-2 lg:p-10">
                   <p className="font-heading text-2xl font-extrabold leading-tight text-red sm:text-3xl lg:text-4xl">
                     {slide.highlight}
                   </p>
@@ -117,12 +117,12 @@ export function HeroSlider() {
                   </Link>
                 </div>
 
-                {/* Image — full photo always visible (no cropping) */}
-                <div className="order-1 flex items-center justify-center p-3 sm:p-4 md:order-2">
+                {/* Image — larger, highlighted, full photo always visible (no cropping) */}
+                <div className="order-1 flex items-center justify-center p-3 sm:p-4 md:order-2 md:col-span-3 md:p-5">
                   <img
                     src={slide.src}
                     alt={slide.title}
-                    className="max-h-56 w-full rounded-xl object-contain sm:max-h-72 md:max-h-[22rem]"
+                    className="max-h-64 w-full rounded-xl object-contain shadow-xl ring-1 ring-black/5 sm:max-h-80 md:max-h-[28rem]"
                     fetchPriority={i === 0 ? "high" : "low"}
                     loading={i === 0 ? "eager" : "lazy"}
                   />
@@ -131,7 +131,7 @@ export function HeroSlider() {
                 {/* Diagonal cross partition (decorative, never crops the image) */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-y-6 left-1/2 z-10 hidden w-[3px] -translate-x-1/2 -skew-x-12 rounded-full bg-gradient-to-b from-saffron via-background to-green md:block"
+                  className="pointer-events-none absolute inset-y-6 left-[40%] z-10 hidden w-[3px] -translate-x-1/2 -skew-x-12 rounded-full bg-gradient-to-b from-saffron via-background to-green md:block"
                 />
               </div>
             </div>
