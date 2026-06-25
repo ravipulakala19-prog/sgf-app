@@ -1,10 +1,8 @@
 import { Link } from "@tanstack/react-router";
+import sgfLogo from "@/assets/sgf-logo.jpeg.asset.json";
 
 /**
- * SGF brand logo mark.
- * Swap easily: drop the master logo into src/assets/ and replace the inline mark
- * with <img src={logo} ... />. Until then this renders the SGF acronym mark
- * (Acronym Red) with the org name.
+ * SGF brand logo mark — uses the official Special Guys Foundation logo.
  */
 export function Logo({
   variant = "default",
@@ -20,13 +18,13 @@ export function Logo({
       aria-label="Special Guys Foundation — home"
       className={`flex items-center gap-3 ${className}`}
     >
-      {/* SWAP: replace this block with the master logo image */}
-      <span
-        aria-hidden="true"
-        className="grid size-11 shrink-0 place-items-center rounded-full bg-red text-red-foreground font-heading text-lg font-extrabold shadow-sm ring-2 ring-saffron/60"
-      >
-        SGF
-      </span>
+      <img
+        src={sgfLogo.url}
+        alt="Special Guys Foundation logo"
+        className="size-11 shrink-0 rounded-full object-contain"
+        width={44}
+        height={44}
+      />
       <span className="flex flex-col leading-tight">
         <span
           className={`font-heading text-sm font-bold tracking-tight sm:text-base ${
