@@ -17,9 +17,9 @@ import {
   Building2,
 } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
+import { HeroSlider } from "@/components/sgf/HeroSlider";
 import { CountUp } from "@/components/sgf/CountUp";
 import { siteConfig } from "@/lib/site-config";
-import heroImg from "@/assets/sgf-hero.jpg";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -67,49 +67,9 @@ function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <img
-          src={heroImg}
-          alt="SGF volunteers helping a man at a community blood donation camp at sunrise"
-          width={1920}
-          height={1280}
-          className="absolute inset-0 size-full object-cover"
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue/85 via-blue/65 to-blue/40" aria-hidden="true" />
-        <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-24 sm:px-6 md:py-32 lg:py-40">
-          <span className="rounded-full bg-saffron px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-saffron-foreground">
-            {siteConfig.tagline}
-          </span>
-          <h1 className="max-w-3xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Together, We Save Lives. Together, We Build Hope.
-          </h1>
-          <p className="max-w-2xl text-base text-white/90 sm:text-lg">
-            Special Guys Foundation is a volunteer-driven non-profit supporting
-            underprivileged families, patients in medical emergencies, students,
-            and communities in need — connecting compassionate donors with people
-            who need immediate help.
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/donate"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 text-base font-bold text-red-foreground shadow-lg transition-transform hover:scale-105"
-            >
-              Donate Now <ArrowRight className="size-5" />
-            </Link>
-            <Link
-              to="/volunteer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-saffron bg-white/10 px-7 py-3.5 text-base font-bold text-white backdrop-blur transition-colors hover:bg-saffron hover:text-saffron-foreground"
-            >
-              Become a Volunteer
-            </Link>
-          </div>
-          <p className="text-sm font-medium text-white/80">
-            Serving Humanity • Inspiring Hope • Building Communities
-          </p>
-        </div>
-      </section>
+      {/* Hero slider */}
+      <HeroSlider />
+
 
       {/* Impact stats band */}
       <section className="bg-blue" aria-label="Our impact in numbers">
