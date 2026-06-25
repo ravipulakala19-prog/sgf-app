@@ -61,7 +61,6 @@ const slides: Slide[] = [
 
 export function HeroSlider() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const go = useCallback((next: number) => {
@@ -69,28 +68,25 @@ export function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
     timer.current = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, 5000);
     return () => {
       if (timer.current) clearInterval(timer.current);
     };
-  }, [paused]);
+  }, []);
 
   return (
     <section
       className="relative bg-background py-8 sm:py-10"
       aria-roledescription="carousel"
       aria-label="Special Guys Foundation highlights"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="relative overflow-hidden">
         {/* Track: each slide is 80% wide, centered with 10% peek on each side */}
         <div
-          className="flex transition-[margin] duration-700 ease-out"
-          style={{ marginLeft: `calc(10% - ${index * 80}%)` }}
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(calc(10% - ${index * 80}%))` }}
         >
           {slides.map((slide, i) => (
             <div
@@ -102,7 +98,7 @@ export function HeroSlider() {
               aria-hidden={i !== index}
             >
               <div
-                className={`grid overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
+                className={`relative grid overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
               >
                 {/* Text */}
                 <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 lg:p-12">
@@ -120,6 +116,17 @@ export function HeroSlider() {
                     {slide.cta.label} <ArrowRight className="size-4 sm:size-5" />
                   </Link>
                 </div>
+
+                {/* Cross-line partition divider (tricolor) */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden h-px -translate-y-1/2 bg-gradient-to-r from-saffron via-background to-green md:left-1/2 md:right-auto md:top-0 md:block md:h-full md:w-px md:translate-y-0 md:bg-gradient-to-b"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-3 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-sm bg-saffron shadow-sm ring-2 ring-background md:block"
+                />
+
                 {/* Image */}
                 <div className="order-1 md:order-2">
                   <img
