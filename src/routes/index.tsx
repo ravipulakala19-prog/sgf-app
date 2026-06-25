@@ -17,6 +17,7 @@ import {
   Building2,
 } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
+import { HeroSlider } from "@/components/sgf/HeroSlider";
 import { CountUp } from "@/components/sgf/CountUp";
 import { siteConfig } from "@/lib/site-config";
 import heroImg from "@/assets/sgf-hero.jpg";
