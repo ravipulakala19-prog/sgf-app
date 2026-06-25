@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
 import slide1 from "@/assets/slider/slide-1.jpg.asset.json";
 import slide2 from "@/assets/slider/slide-2.jpg.asset.json";
 import slide3 from "@/assets/slider/slide-3.jpg.asset.json";
