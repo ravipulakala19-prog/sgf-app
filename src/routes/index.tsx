@@ -20,7 +20,6 @@ import { Reveal } from "@/components/sgf/Reveal";
 import { HeroSlider } from "@/components/sgf/HeroSlider";
 import { CountUp } from "@/components/sgf/CountUp";
 import { siteConfig } from "@/lib/site-config";
-import heroImg from "@/assets/sgf-hero.jpg";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
