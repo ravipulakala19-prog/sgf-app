@@ -83,8 +83,8 @@ function Contact() {
                 <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid size-11 place-items-center rounded-full bg-blue text-blue-foreground transition-transform hover:scale-110">
                   <Instagram className="size-5" aria-hidden="true" />
                 </a>
-                <a href={social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="grid size-11 place-items-center rounded-full bg-blue text-blue-foreground transition-transform hover:scale-110">
-                  <Youtube className="size-5" aria-hidden="true" />
+                <a href={social.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="grid size-11 place-items-center rounded-full bg-blue text-blue-foreground transition-transform hover:scale-110">
+                  <Send className="size-5" aria-hidden="true" />
                 </a>
                 <a href={social.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-11 place-items-center rounded-full bg-green text-green-foreground transition-transform hover:scale-110">
                   <MessageCircle className="size-5" aria-hidden="true" />
