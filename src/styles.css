@@ -151,12 +151,7 @@
   background: linear-gradient(135deg, rgba(255, 153, 51, 0.12), rgba(255, 255, 255, 0.05) 50%, rgba(19, 136, 8, 0.12));
 }
 
-/* Diagonal cross partition between content and image (desktop only) */
-@media (min-width: 768px) {
-  .diagonal-partition {
-    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
-  }
-}
+
 
 
 /* Tasteful fade-in-on-scroll */
