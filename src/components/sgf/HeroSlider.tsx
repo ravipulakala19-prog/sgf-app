@@ -1,75 +1,35 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useT } from "@/lib/i18n";
 import slide1 from "@/assets/slider/slide-1.jpg.asset.json";
 import slide2 from "@/assets/slider/slide-2.jpg.asset.json";
 import slide3 from "@/assets/slider/slide-3.jpg.asset.json";
 import slide4 from "@/assets/slider/slide-4.jpg.asset.json";
 import slide5 from "@/assets/slider/slide-5.jpg.asset.json";
 
-type Slide = {
-  src: string;
-  highlight: string;
-  title: string;
-  sub: string;
-  tint: string;
-  cta: { label: string; to: string };
-};
-
-const slides: Slide[] = [
-  {
-    src: slide1.url,
-    highlight: "Every Drop Counts.",
-    title: "Donate Blood, Save a Life Today",
-    sub: "Support 100+ Patients in Need",
-    tint: "bg-red/10",
-    cta: { label: "Donate Now", to: "/donate" },
-  },
-  {
-    src: slide2.url,
-    highlight: "Join Our Volunteers.",
-    title: "Ordinary People, Extraordinary Impact",
-    sub: "500+ Volunteers Serving Communities",
-    tint: "bg-saffron/15",
-    cta: { label: "Become a Volunteer", to: "/volunteer" },
-  },
-  {
-    src: slide3.url,
-    highlight: "Empower a Child.",
-    title: "Books and Hope for Every Student",
-    sub: "Support Education for 200+ Children",
-    tint: "bg-green/10",
-    cta: { label: "Support Education", to: "/donate" },
-  },
-  {
-    src: slide4.url,
-    highlight: "Safer Roads.",
-    title: "Awareness That Saves Lives",
-    sub: "Reaching 50+ Communities",
-    tint: "bg-blue/10",
-    cta: { label: "See Our Work", to: "/what-we-do" },
-  },
-  {
-    src: slide5.url,
-    highlight: "Together We Win.",
-    title: "Uniting People for a Cause",
-    sub: "Community Events & Tournaments",
-    tint: "bg-saffron/15",
-    cta: { label: "Get Involved", to: "/volunteer" },
-  },
-];
+const slideMeta = [
+  { src: slide1.url, tint: "bg-red/10", to: "/donate" },
+  { src: slide2.url, tint: "bg-saffron/15", to: "/volunteer" },
+  { src: slide3.url, tint: "bg-green/10", to: "/donate" },
+  { src: slide4.url, tint: "bg-blue/10", to: "/what-we-do" },
+  { src: slide5.url, tint: "bg-saffron/15", to: "/volunteer" },
+] as const;
 
 export function HeroSlider() {
+  const t = useT();
+  const slides = slideMeta.map((m, i) => ({ ...m, ...t.hero.slides[i] }));
+
   const [index, setIndex] = useState(0);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const go = useCallback((next: number) => {
-    setIndex((next + slides.length) % slides.length);
+    setIndex((next + slideMeta.length) % slideMeta.length);
   }, []);
 
   useEffect(() => {
     timer.current = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
+      setIndex((i) => (i + 1) % slideMeta.length);
     }, 5000);
     return () => {
       if (timer.current) clearInterval(timer.current);
@@ -80,7 +40,7 @@ export function HeroSlider() {
     <section
       className="relative bg-background py-8 sm:py-10"
       aria-roledescription="carousel"
-      aria-label="Special Guys Foundation highlights"
+      aria-label={t.hero.label}
     >
       <div className="relative overflow-hidden">
         {/* Track: each slide is 80% wide, centered with 10% peek on each side */}
@@ -110,10 +70,10 @@ export function HeroSlider() {
                   </h2>
                   <p className="text-sm text-muted-foreground sm:text-base">{slide.sub}</p>
                   <Link
-                    to={slide.cta.to}
+                    to={slide.to}
                     className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-red-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
                   >
-                    {slide.cta.label} <ArrowRight className="size-4 sm:size-5" />
+                    {slide.cta} <ArrowRight className="size-4 sm:size-5" />
                   </Link>
                 </div>
 

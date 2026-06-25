@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/sgf/Navbar";
 import { Footer } from "../components/sgf/Footer";
 import { FloatingDonate } from "../components/sgf/FloatingDonate";
+import { LanguageProvider } from "../lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -135,15 +136,18 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-dvh flex-col">
-        <Navbar />
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-        <FloatingDonate />
-      </div>
+      <LanguageProvider>
+        <div className="flex min-h-dvh flex-col">
+          <Navbar />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+          <FloatingDonate />
+        </div>
+      </LanguageProvider>
     </QueryClientProvider>
   );
+
 }
