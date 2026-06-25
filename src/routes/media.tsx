@@ -61,36 +61,62 @@ function Media() {
         </div>
       </section>
 
-      {/* Press clippings placeholder grid */}
+      {/* Photo gallery */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-blue">In the news</h2>
+          <h2 className="font-heading text-3xl font-bold text-blue">From the field</h2>
           <p className="mt-3 text-muted-foreground">
-            A selection of press coverage. Replace these placeholders with actual newspaper clippings and links.
+            Moments from SGF's on-ground service across Srikakulam District.
           </p>
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((n, i) => (
-            <Reveal key={n} delay={i * 60}>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                <div className="grid aspect-[4/3] place-items-center border-b border-dashed border-border bg-muted/40 text-muted-foreground">
-                  <div className="text-center">
-                    <Newspaper className="mx-auto size-10" aria-hidden="true" />
-                    <span className="mt-2 block text-xs">Press clipping placeholder</span>
-                  </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {gallery.map((g, i) => (
+            <Reveal key={g.src} delay={i * 60}>
+              <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+                <div className="overflow-hidden">
+                  <img
+                    src={g.src}
+                    alt={g.caption}
+                    loading="lazy"
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">Regional Daily</p>
-                  <h3 className="mt-1 font-heading text-lg font-bold text-blue">Press Feature {n}</h3>
-                  <p className="mt-2 flex-1 text-sm text-muted-foreground">
-                    Coverage of SGF's community service and humanitarian initiatives.
-                  </p>
-                </div>
-              </article>
+                <figcaption className="p-5 text-sm text-muted-foreground">{g.caption}</figcaption>
+              </figure>
             </Reveal>
           ))}
         </div>
       </section>
+
+      {/* Press clipping */}
+      <section className="bg-muted/30">
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="font-heading text-3xl font-bold text-blue">In the news</h2>
+            <p className="mt-3 text-muted-foreground">
+              SGF's humanitarian work featured in regional newspapers.
+            </p>
+          </Reveal>
+          <Reveal className="mt-12">
+            <article className="mx-auto max-w-md overflow-hidden rounded-2xl border border-border bg-card shadow-md">
+              <img
+                src={pressNewsTime.url}
+                alt="News Time feature: SGF provides Rs. 25,000 financial assistance to a family in Kanchili Mandal"
+                loading="lazy"
+                className="w-full object-cover"
+              />
+              <div className="p-5">
+                <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">News Time — Srikakulam</p>
+                <h3 className="mt-1 font-heading text-lg font-bold text-blue">SGF extends ₹25,000 financial aid</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Coverage of SGF members supporting an ailing family in Jadapudi village, Kanchili Mandal.
+                </p>
+              </div>
+            </article>
+          </Reveal>
+        </div>
+      </section>
+
 
       {/* Coverage themes */}
       <section className="bg-blue">
