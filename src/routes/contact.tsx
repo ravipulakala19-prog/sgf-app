@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, MessageCircle, Send, Check, Facebook, Instagram, Youtube } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Send, Check, Facebook, Instagram } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
 
