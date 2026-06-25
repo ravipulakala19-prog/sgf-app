@@ -100,7 +100,7 @@ export function HeroSlider() {
               aria-hidden={i !== index}
             >
               <div
-                className={`grid overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
+                className={`relative grid overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
               >
                 {/* Text */}
                 <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 lg:p-12">
@@ -118,6 +118,17 @@ export function HeroSlider() {
                     {slide.cta.label} <ArrowRight className="size-4 sm:size-5" />
                   </Link>
                 </div>
+
+                {/* Cross-line partition divider (tricolor) */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden h-px -translate-y-1/2 bg-gradient-to-r from-saffron via-background to-green md:left-1/2 md:right-auto md:top-0 md:block md:h-full md:w-px md:translate-y-0 md:bg-gradient-to-b"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-3 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-sm bg-saffron shadow-sm ring-2 ring-background md:block"
+                />
+
                 {/* Image */}
                 <div className="order-1 md:order-2">
                   <img
