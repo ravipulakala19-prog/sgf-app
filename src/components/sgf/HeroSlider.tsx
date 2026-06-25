@@ -9,46 +9,52 @@ import slide5 from "@/assets/slider/slide-5.jpg.asset.json";
 
 type Slide = {
   src: string;
-  eyebrow: string;
+  highlight: string;
   title: string;
-  desc: string;
+  sub: string;
+  tint: string;
   cta: { label: string; to: string };
 };
 
 const slides: Slide[] = [
   {
     src: slide1.url,
-    eyebrow: "Blood Donation",
-    title: "Every Drop Counts. Every Donor Saves a Life.",
-    desc: "Our volunteer blood donor network and regular camps connect patients in critical need with willing donors.",
-    cta: { label: "Donate Blood", to: "/what-we-do" },
+    highlight: "Every Drop Counts.",
+    title: "Donate Blood, Save a Life Today",
+    sub: "Support 100+ Patients in Need",
+    tint: "bg-red/10",
+    cta: { label: "Donate Now", to: "/donate" },
   },
   {
     src: slide2.url,
-    eyebrow: "Our Volunteers",
-    title: "Ordinary People Doing Extraordinary Things.",
-    desc: "A growing family of compassionate volunteers serving communities across Srikakulam District.",
+    highlight: "Join Our Volunteers.",
+    title: "Ordinary People, Extraordinary Impact",
+    sub: "500+ Volunteers Serving Communities",
+    tint: "bg-saffron/15",
     cta: { label: "Become a Volunteer", to: "/volunteer" },
   },
   {
     src: slide3.url,
-    eyebrow: "Educational Support",
-    title: "Empowering Students With Books and Hope.",
-    desc: "School supplies, materials, and support to help disadvantaged children stay in school.",
+    highlight: "Empower a Child.",
+    title: "Books and Hope for Every Student",
+    sub: "Support Education for 200+ Children",
+    tint: "bg-green/10",
     cta: { label: "Support Education", to: "/donate" },
   },
   {
     src: slide4.url,
-    eyebrow: "Community Awareness",
-    title: "Safer Roads, Stronger Communities.",
-    desc: "Road safety drives and awareness campaigns spreading life-saving messages where they matter most.",
+    highlight: "Safer Roads.",
+    title: "Awareness That Saves Lives",
+    sub: "Reaching 50+ Communities",
+    tint: "bg-blue/10",
     cta: { label: "See Our Work", to: "/what-we-do" },
   },
   {
     src: slide5.url,
-    eyebrow: "Community & Sports",
-    title: "Bringing People Together for a Cause.",
-    desc: "Sports tournaments and community events that unite people and raise support for those in need.",
+    highlight: "Together We Win.",
+    title: "Uniting People for a Cause",
+    sub: "Community Events & Tournaments",
+    tint: "bg-saffron/15",
     cta: { label: "Get Involved", to: "/volunteer" },
   },
 ];
@@ -74,82 +80,82 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative isolate overflow-hidden"
+      className="relative bg-background py-8 sm:py-10"
       aria-roledescription="carousel"
       aria-label="Special Guys Foundation highlights"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative h-[80vh] min-h-[520px] w-full">
-        {slides.map((slide, i) => (
-          <div
-            key={slide.src}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
-              i === index ? "opacity-100" : "pointer-events-none opacity-0"
-            }`}
-            aria-hidden={i !== index}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${slides.length}`}
-          >
-            <img
-              src={slide.src}
-              alt={slide.title}
-              className="absolute inset-0 size-full object-cover"
-              fetchPriority={i === 0 ? "high" : "low"}
-              loading={i === 0 ? "eager" : "lazy"}
-            />
+      <div className="relative overflow-hidden">
+        {/* Track: each slide is 80% wide, centered with 10% peek on each side */}
+        <div
+          className="flex transition-[margin] duration-700 ease-out"
+          style={{ marginLeft: `calc(10% - ${index * 80}%)` }}
+        >
+          {slides.map((slide, i) => (
             <div
-              className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/70 to-blue/30"
-              aria-hidden="true"
-            />
-            <div className="relative mx-auto flex h-full max-w-7xl flex-col items-start justify-center gap-5 px-4 sm:px-6">
-              <span className="rounded-full bg-saffron px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-saffron-foreground">
-                {slide.eyebrow}
-              </span>
-              <h1 className="max-w-3xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-                {slide.title}
-              </h1>
-              <p className="max-w-2xl text-base text-white/90 sm:text-lg">{slide.desc}</p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/donate"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 text-base font-bold text-red-foreground shadow-lg transition-transform hover:scale-105"
-                >
-                  Donate Now <ArrowRight className="size-5" />
-                </Link>
-                <Link
-                  to={slide.cta.to}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-saffron bg-white/10 px-7 py-3.5 text-base font-bold text-white backdrop-blur transition-colors hover:bg-saffron hover:text-saffron-foreground"
-                >
-                  {slide.cta.label}
-                </Link>
+              key={slide.src}
+              className="w-[80%] shrink-0 px-2 sm:px-3"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${slides.length}`}
+              aria-hidden={i !== index}
+            >
+              <div
+                className={`grid overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:grid-cols-2 ${slide.tint}`}
+              >
+                {/* Text */}
+                <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 lg:p-12">
+                  <p className="font-heading text-2xl font-extrabold leading-tight text-red sm:text-3xl lg:text-4xl">
+                    {slide.highlight}
+                  </p>
+                  <h2 className="font-heading text-xl font-bold leading-snug text-blue sm:text-2xl lg:text-3xl">
+                    {slide.title}
+                  </h2>
+                  <p className="text-sm text-muted-foreground sm:text-base">{slide.sub}</p>
+                  <Link
+                    to={slide.cta.to}
+                    className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-red-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
+                  >
+                    {slide.cta.label} <ArrowRight className="size-4 sm:size-5" />
+                  </Link>
+                </div>
+                {/* Image */}
+                <div className="order-1 md:order-2">
+                  <img
+                    src={slide.src}
+                    alt={slide.title}
+                    className="h-48 w-full object-cover sm:h-64 md:h-full md:min-h-[20rem]"
+                    fetchPriority={i === 0 ? "high" : "low"}
+                    loading={i === 0 ? "eager" : "lazy"}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Arrows */}
+        <button
+          type="button"
+          onClick={() => go(index - 1)}
+          aria-label="Previous slide"
+          className="absolute left-2 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-card text-blue shadow-md ring-1 ring-border transition-colors hover:bg-saffron hover:text-saffron-foreground sm:left-[6%]"
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => go(index + 1)}
+          aria-label="Next slide"
+          className="absolute right-2 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-card text-blue shadow-md ring-1 ring-border transition-colors hover:bg-saffron hover:text-saffron-foreground sm:right-[6%]"
+        >
+          <ChevronRight className="size-5" />
+        </button>
       </div>
 
-      {/* Arrows */}
-      <button
-        type="button"
-        onClick={() => go(index - 1)}
-        aria-label="Previous slide"
-        className="absolute left-3 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/20 text-white backdrop-blur transition-colors hover:bg-white/40 sm:left-5"
-      >
-        <ChevronLeft className="size-6" />
-      </button>
-      <button
-        type="button"
-        onClick={() => go(index + 1)}
-        aria-label="Next slide"
-        className="absolute right-3 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/20 text-white backdrop-blur transition-colors hover:bg-white/40 sm:right-5"
-      >
-        <ChevronRight className="size-6" />
-      </button>
-
       {/* Dots */}
-      <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2.5">
+      <div className="mt-5 flex justify-center gap-2.5">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -158,7 +164,7 @@ export function HeroSlider() {
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === index}
             className={`h-2.5 rounded-full transition-all ${
-              i === index ? "w-8 bg-saffron" : "w-2.5 bg-white/60 hover:bg-white"
+              i === index ? "w-8 bg-red" : "w-2.5 bg-border hover:bg-muted-foreground"
             }`}
           />
         ))}
