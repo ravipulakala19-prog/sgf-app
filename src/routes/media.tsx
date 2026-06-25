@@ -1,6 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Newspaper, ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
+import galleryDonation from "@/assets/media/gallery-1.jpg.asset.json";
+import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
+import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
+import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
+import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
+
+const gallery = [
+  { src: galleryDonation.url, caption: "Financial assistance handed to a family in need" },
+  { src: galleryBlood.url, caption: "Blood donation drive at Uddanam Blood Centre" },
+  { src: galleryEducation.url, caption: "Educational support and supplies for students" },
+  { src: galleryRelief.url, caption: "Community welfare visit to a family in distress" },
+];
 
 export const Route = createFileRoute("/media")({
   head: () => ({
