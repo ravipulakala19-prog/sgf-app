@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, MessageCircle, MapPin, Phone, Mail, QrCode } from "lucide-react";
+import { Facebook, Instagram, Send, MessageCircle, MapPin, Phone, Mail, QrCode } from "lucide-react";
 import { Logo } from "./Logo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -30,8 +30,8 @@ export function Footer() {
             <a href={social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
               <Instagram className="size-5" />
             </a>
-            <a href={social.youtube} aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
-              <Youtube className="size-5" />
+            <a href={social.telegram} aria-label="Telegram" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+              <Send className="size-5" />
             </a>
             <a href={social.whatsapp} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
               <MessageCircle className="size-5" />
