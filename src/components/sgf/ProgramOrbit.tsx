@@ -1,16 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { HeartPulse, Droplets, GraduationCap, Users, LifeBuoy, type LucideIcon } from "lucide-react";
+import {
+  HeartPulse,
+  Droplets,
+  GraduationCap,
+  HandHeart,
+  LifeBuoy,
+  type LucideIcon,
+} from "lucide-react";
 import { useT } from "@/lib/i18n";
+import logo from "@/assets/sgf-logo.jpeg.asset.json";
 
-const programIcons: LucideIcon[] = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
+const programIcons: LucideIcon[] = [HeartPulse, Droplets, GraduationCap, HandHeart, LifeBuoy];
 const programSlugs = ["emergency", "blood", "education", "community", "relief"] as const;
-const nodeColors = [
-  "bg-red text-red-foreground",
-  "bg-saffron text-saffron-foreground",
-  "bg-blue text-blue-foreground",
-  "bg-green text-green-foreground",
-  "bg-red text-red-foreground",
+
+/** Per-node gradient + glow color (brand palette). */
+const nodeStyles = [
+  { from: "var(--red)", glow: "var(--red)" },
+  { from: "var(--saffron)", glow: "var(--saffron)" },
+  { from: "var(--blue)", glow: "var(--blue)" },
+  { from: "var(--green)", glow: "var(--green)" },
+  { from: "var(--red)", glow: "var(--red)" },
 ];
 
 export function ProgramOrbit() {
@@ -22,7 +32,7 @@ export function ProgramOrbit() {
   const programs = programIcons.map((icon, i) => ({
     icon,
     slug: programSlugs[i],
-    color: nodeColors[i],
+    style: nodeStyles[i],
     ...t.home.programs[i],
   }));
 
@@ -35,24 +45,57 @@ export function ProgramOrbit() {
   };
 
   const count = programs.length;
+  const radiusPct = 42;
 
   return (
     <div
-      className="relative mx-auto mt-10 aspect-square w-[88vw] max-w-[30rem]"
+      className="relative mx-auto mt-10 aspect-square w-[90vw] max-w-[34rem]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Rotating ring */}
+      {/* Decorative connecting spokes */}
+      <svg
+        className="pointer-events-none absolute inset-0 size-full"
+        viewBox="0 0 100 100"
+        aria-hidden="true"
+      >
+        {programs.map((p, i) => {
+          const angle = (i / count) * 2 * Math.PI - Math.PI / 2;
+          const x = 50 + radiusPct * Math.cos(angle);
+          const y = 50 + radiusPct * Math.sin(angle);
+          return (
+            <line
+              key={p.slug}
+              x1="50"
+              y1="50"
+              x2={x}
+              y2={y}
+              stroke={p.style.from}
+              strokeWidth="0.5"
+              strokeDasharray="1.5 1.5"
+              opacity="0.35"
+            />
+          );
+        })}
+      </svg>
+
+      {/* Soft glowing backdrop */}
       <div
-        className="absolute inset-0 rounded-full border-2 border-dashed border-border/70"
+        className="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-saffron/10 blur-2xl"
+        style={{ animation: "sgf-pulse-glow 6s ease-in-out infinite" }}
+        aria-hidden="true"
+      />
+
+      {/* Rotating ring + nodes */}
+      <div
+        className="absolute inset-0 rounded-full border border-dashed border-border/60"
         style={{
-          animation: "sgf-orbit-spin 40s linear infinite",
+          animation: "sgf-orbit-spin 44s linear infinite",
           animationPlayState: paused ? "paused" : "running",
         }}
       >
         {programs.map((p, i) => {
           const angle = (i / count) * 2 * Math.PI - Math.PI / 2;
-          const radiusPct = 42;
           const x = 50 + radiusPct * Math.cos(angle);
           const y = 50 + radiusPct * Math.sin(angle);
           const isActive = active === i;
@@ -65,22 +108,40 @@ export function ProgramOrbit() {
               className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
               style={{ left: `${x}%`, top: `${y}%` }}
             >
+              {/* Counter-rotate to keep upright */}
               <span
                 className="block"
                 style={{
-                  animation: "sgf-orbit-spin 40s linear infinite reverse",
+                  animation: "sgf-orbit-spin 44s linear infinite reverse",
                   animationPlayState: paused ? "paused" : "running",
                 }}
               >
-                <span
-                  className={`flex size-20 flex-col items-center justify-center gap-1 rounded-full shadow-lg ring-4 ring-background transition-transform duration-500 ease-out sm:size-24 ${p.color} ${
-                    isActive ? "scale-150" : "group-hover:scale-110"
-                  }`}
-                >
-                  <p.icon className="size-7 sm:size-8" aria-hidden="true" />
-                </span>
-                <span className="mt-2 block max-w-[7rem] text-center text-xs font-bold leading-tight text-blue">
-                  {p.title}
+                <span className="relative flex flex-col items-center">
+                  {/* Pulsing glow halo */}
+                  <span
+                    className="absolute top-1/2 left-1/2 -z-10 size-24 -translate-x-1/2 -translate-y-[60%] rounded-full blur-md sm:size-28"
+                    style={{
+                      backgroundColor: p.style.glow,
+                      opacity: 0.3,
+                      animation: "sgf-pulse-glow 4s ease-in-out infinite",
+                      animationDelay: `${i * 0.4}s`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={`flex size-20 items-center justify-center rounded-full text-white shadow-xl ring-4 ring-background transition-all duration-500 ease-out sm:size-24 ${
+                      isActive ? "scale-150" : "group-hover:scale-110 group-hover:-translate-y-1"
+                    }`}
+                    style={{
+                      backgroundImage: `linear-gradient(140deg, ${p.style.from}, color-mix(in oklab, ${p.style.from} 70%, black))`,
+                      boxShadow: `0 10px 30px -8px ${p.style.glow}`,
+                    }}
+                  >
+                    <p.icon className="size-8 sm:size-9" strokeWidth={2.2} aria-hidden="true" />
+                  </span>
+                  <span className="mt-3 block max-w-[7.5rem] rounded-full bg-background/90 px-2 py-0.5 text-center text-xs font-bold leading-tight text-blue shadow-sm backdrop-blur">
+                    {p.title}
+                  </span>
                 </span>
               </span>
             </button>
@@ -89,9 +150,17 @@ export function ProgramOrbit() {
       </div>
 
       {/* Center hub */}
-      <div className="absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-blue p-4 text-center shadow-xl ring-4 ring-saffron/40 sm:size-40">
-        <span className="font-heading text-xl font-extrabold text-white sm:text-2xl">SGF</span>
-        <span className="mt-1 text-[0.65rem] leading-tight text-white/80 sm:text-xs">
+      <div
+        className="absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center overflow-hidden rounded-full bg-blue p-3 text-center shadow-2xl ring-4 ring-saffron/50 sm:size-40"
+        style={{ animation: "sgf-float 5s ease-in-out infinite" }}
+      >
+        <img
+          src={logo.url}
+          alt=""
+          aria-hidden="true"
+          className="size-12 rounded-full object-cover ring-2 ring-white/70 sm:size-16"
+        />
+        <span className="mt-1.5 text-[0.65rem] font-semibold leading-tight text-white/90 sm:text-xs">
           {t.home.whatWeDoTitle}
         </span>
       </div>
