@@ -391,6 +391,7 @@ const te: Dict = {
     whatWeDo: "మేము చేసేది",
     impact: "ప్రభావం",
     volunteer: "స్వచ్ఛందసేవ",
+    volunteers: "మా బృందం",
     media: "మీడియా",
     contact: "సంప్రదించండి",
     donate: "విరాళం",
