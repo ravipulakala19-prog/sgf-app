@@ -176,3 +176,18 @@
     transition: none;
   }
 }
+
+@keyframes sgf-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="sgf-orbit-spin"] {
+    animation: none !important;
+  }
+}
