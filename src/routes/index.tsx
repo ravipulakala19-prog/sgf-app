@@ -79,6 +79,66 @@ function Home() {
         </div>
       </section>
 
+      {/* Volunteer family band */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+          <div className="grid items-center gap-10 rounded-3xl border border-border bg-card p-8 shadow-lg sm:p-12 lg:grid-cols-2">
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full bg-green/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-green">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-green opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-green" />
+                </span>
+                {t.volunteerBand.liveLabel}
+              </span>
+              <p className="mt-3 font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.volunteerBand.label}</p>
+              <h2 className="mt-1 font-heading text-3xl font-bold text-blue sm:text-4xl">{t.volunteerBand.title}</h2>
+              <p className="mt-4 text-muted-foreground">{t.volunteerBand.desc}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  to="/volunteer"
+                  className="inline-flex items-center gap-2 rounded-full bg-saffron px-6 py-3 text-sm font-bold text-saffron-foreground transition-transform hover:scale-105"
+                >
+                  <UserPlus className="size-4" /> {t.volunteerBand.becomeBtn}
+                </Link>
+                <Link
+                  to="/volunteers"
+                  className="inline-flex items-center gap-2 rounded-full border border-blue px-6 py-3 text-sm font-bold text-blue transition-colors hover:bg-blue hover:text-blue-foreground"
+                >
+                  {t.volunteerBand.meetTeamBtn} <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="flex flex-col items-center rounded-2xl bg-blue p-5 text-center text-white shadow-md">
+                  <Users className="mb-2 size-7 text-saffron" aria-hidden="true" />
+                  <span className="font-heading text-2xl font-extrabold sm:text-3xl">
+                    <CountUp end={siteConfig.volunteers.total} suffix="+" />
+                  </span>
+                  <span className="mt-1 text-[0.7rem] leading-tight text-white/80">{t.volunteerBand.totalLabel}</span>
+                </div>
+                <div className="flex flex-col items-center rounded-2xl bg-green p-5 text-center text-white shadow-md">
+                  <Activity className="mb-2 size-7" aria-hidden="true" />
+                  <span className="font-heading text-2xl font-extrabold sm:text-3xl">
+                    <CountUp end={siteConfig.volunteers.activeToday} />
+                  </span>
+                  <span className="mt-1 text-[0.7rem] leading-tight text-white/90">{t.volunteerBand.activeLabel}</span>
+                </div>
+                <div className="flex flex-col items-center rounded-2xl bg-saffron p-5 text-center text-saffron-foreground shadow-md">
+                  <MapPin className="mb-2 size-7" aria-hidden="true" />
+                  <span className="font-heading text-2xl font-extrabold sm:text-3xl">
+                    <CountUp end={siteConfig.volunteers.cities} suffix="+" />
+                  </span>
+                  <span className="mt-1 text-[0.7rem] leading-tight">{t.volunteerBand.citiesLabel}</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+
       {/* Who We Are */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-2">
