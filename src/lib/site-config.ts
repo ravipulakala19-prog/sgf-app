@@ -34,9 +34,9 @@ export const siteConfig = {
     payeeName: "Special Guys Foundation",
     bank: {
       accountName: "Special Guys Foundation",
-      accountNumber: "0000 0000 0000",
-      ifsc: "XXXX0000000",
-      bankName: "Bank Name, Branch",
+      accountNumber: "41351184720",
+      ifsc: "SBIN0008820",
+      bankName: "State Bank of India, Silagam Branch",
     },
   },
 
