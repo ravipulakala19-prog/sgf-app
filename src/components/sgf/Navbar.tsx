@@ -17,6 +17,7 @@ export function Navbar() {
     { label: t.nav.whatWeDo, to: "/what-we-do" },
     { label: t.nav.impact, to: "/impact" },
     { label: t.nav.volunteer, to: "/volunteer" },
+    { label: t.nav.volunteers, to: "/volunteers" },
     { label: t.nav.media, to: "/media" },
     { label: t.nav.contact, to: "/contact" },
   ] as const;
