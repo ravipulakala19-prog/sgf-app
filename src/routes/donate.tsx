@@ -84,11 +84,8 @@ function Donate() {
                   <h3 className="font-heading text-xl font-bold text-blue">{t.donate.upiTitle}</h3>
                 </div>
                 <div className="mt-5 grid gap-5 sm:grid-cols-[auto_1fr] sm:items-center">
-                  <div className="mx-auto grid size-40 place-items-center rounded-xl border-2 border-dashed border-border bg-muted/40 text-center text-muted-foreground">
-                    <div>
-                      <QrCode className="mx-auto size-10" aria-hidden="true" />
-                      <span className="mt-1 block text-xs">{t.donate.qrPlaceholder}</span>
-                    </div>
+                  <div className="mx-auto grid place-items-center rounded-xl border border-border bg-white p-3">
+                    <UpiQr size={160} />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{t.donate.upiId}</p>
