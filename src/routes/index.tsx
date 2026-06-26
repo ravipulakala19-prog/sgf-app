@@ -9,7 +9,7 @@ import {
   Eye,
   Award,
   ArrowRight,
-  Newspaper,
+  
   Activity,
   Building2,
   Users,
