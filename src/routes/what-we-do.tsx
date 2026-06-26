@@ -30,10 +30,12 @@ export const Route = createFileRoute("/what-we-do")({
 });
 
 const programIcons = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
+const programSlugs = ["emergency", "blood", "education", "community", "relief"];
+const programImages = [emergencyImg.url, bloodImg.url, educationImg.url, communityImg.url, reliefImg.url];
 
 function WhatWeDo() {
   const t = useT();
-  const programs = programIcons.map((icon, i) => ({ icon, ...t.whatWeDo.programs[i] }));
+  const programs = programIcons.map((icon, i) => ({ icon, slug: programSlugs[i], image: programImages[i], ...t.whatWeDo.programs[i] }));
   return (
     <>
       <section className="tricolor-gradient">
