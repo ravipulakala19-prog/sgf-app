@@ -12,6 +12,9 @@ import {
   Newspaper,
   Activity,
   Building2,
+  Users,
+  MapPin,
+  UserPlus,
 } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { HeroSlider } from "@/components/sgf/HeroSlider";
