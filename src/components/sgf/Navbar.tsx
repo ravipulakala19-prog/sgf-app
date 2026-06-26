@@ -49,10 +49,10 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-sm font-semibold text-blue transition-colors hover:bg-accent"
+            className="inline-flex items-center gap-1 rounded-full border border-border px-2 py-1.5 text-xs font-semibold text-blue transition-colors hover:bg-accent"
             aria-label={`Switch language to ${langName}`}
           >
-            <Languages className="size-4" aria-hidden="true" />
+            <Languages className="size-3.5" aria-hidden="true" />
             {langName}
           </button>
 
