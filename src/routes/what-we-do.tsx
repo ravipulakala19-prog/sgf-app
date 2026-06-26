@@ -84,7 +84,15 @@ function WhatWeDo() {
                       ))}
                     </ul>
                   )}
+                  <Link
+                    to="/programs/$program"
+                    params={{ program: p.slug }}
+                    className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-red transition-colors hover:gap-2"
+                  >
+                    {t.home.learnMore} <ArrowRight className="size-4" />
+                  </Link>
                 </div>
+
               </article>
             </Reveal>
           ))}
