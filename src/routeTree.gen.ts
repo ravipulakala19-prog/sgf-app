@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatWeDoRouteImport } from './routes/what-we-do'
+import { Route as VolunteersRouteImport } from './routes/volunteers'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MediaRouteImport } from './routes/media'
@@ -23,6 +24,11 @@ import { Route as ProgramsProgramRouteImport } from './routes/programs.$program'
 const WhatWeDoRoute = WhatWeDoRouteImport.update({
   id: '/what-we-do',
   path: '/what-we-do',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VolunteersRoute = VolunteersRouteImport.update({
+  id: '/volunteers',
+  path: '/volunteers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VolunteerRoute = VolunteerRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/media': typeof MediaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/media': typeof MediaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/media': typeof MediaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/volunteers'
     | '/what-we-do'
     | '/programs/$program'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/volunteers'
     | '/what-we-do'
     | '/programs/$program'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/volunteers'
     | '/what-we-do'
     | '/programs/$program'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   MediaRoute: typeof MediaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
+  VolunteersRoute: typeof VolunteersRoute
   WhatWeDoRoute: typeof WhatWeDoRoute
   ProgramsProgramRoute: typeof ProgramsProgramRoute
 }
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/what-we-do'
       fullPath: '/what-we-do'
       preLoaderRoute: typeof WhatWeDoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/volunteers': {
+      id: '/volunteers'
+      path: '/volunteers'
+      fullPath: '/volunteers'
+      preLoaderRoute: typeof VolunteersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/volunteer': {
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   MediaRoute: MediaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,
+  VolunteersRoute: VolunteersRoute,
   WhatWeDoRoute: WhatWeDoRoute,
   ProgramsProgramRoute: ProgramsProgramRoute,
 }
