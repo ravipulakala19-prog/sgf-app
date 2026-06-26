@@ -56,12 +56,23 @@ function WhatWeDo() {
         <div className="flex flex-col gap-10">
           {programs.map((p, i) => (
             <Reveal key={p.title} delay={i * 60}>
-              <article className="grid gap-6 rounded-2xl border border-border bg-card p-6 shadow-sm sm:grid-cols-[auto_1fr] sm:p-8">
-                <span className="grid size-14 place-items-center rounded-2xl bg-saffron/15 text-saffron">
-                  <p.icon className="size-7" aria-hidden="true" />
-                </span>
-                <div>
-                  <h2 className="font-heading text-2xl font-bold text-blue">{p.title}</h2>
+              <article
+                id={p.slug}
+                className="grid scroll-mt-24 gap-6 overflow-hidden rounded-2xl border border-border bg-card shadow-sm md:grid-cols-2"
+              >
+                <div className={`order-1 ${i % 2 === 1 ? "md:order-2" : ""}`}>
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    loading="lazy"
+                    className="h-56 w-full object-cover md:h-full"
+                  />
+                </div>
+                <div className={`order-2 p-6 sm:p-8 ${i % 2 === 1 ? "md:order-1" : ""}`}>
+                  <span className="grid size-14 place-items-center rounded-2xl bg-saffron/15 text-saffron">
+                    <p.icon className="size-7" aria-hidden="true" />
+                  </span>
+                  <h2 className="mt-4 font-heading text-2xl font-bold text-blue">{p.title}</h2>
                   <p className="mt-3 text-muted-foreground">{p.body}</p>
                   {p.points.length > 0 && (
                     <ul className="mt-4 grid gap-2 sm:grid-cols-2">
