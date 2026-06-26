@@ -98,6 +98,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Special Guys Foundation" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Special Guys Foundation (SGF) — Sharing Hands, Saving Lives" },
+      { name: "description", content: "Special Guys Foundation (SGF) is a humanitarian NGO website promoting its mission, attracting donors, and recruiting volunteers." },
+      { property: "og:description", content: "Special Guys Foundation (SGF) is a humanitarian NGO website promoting its mission, attracting donors, and recruiting volunteers." },
+      { name: "twitter:description", content: "Special Guys Foundation (SGF) is a humanitarian NGO website promoting its mission, attracting donors, and recruiting volunteers." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/840cd9f7-4545-46ff-bef9-2016a822288e/id-preview-c611c83f--8384c122-7647-4166-805a-bf71c6c88577.lovable.app-1782449476179.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/840cd9f7-4545-46ff-bef9-2016a822288e/id-preview-c611c83f--8384c122-7647-4166-805a-bf71c6c88577.lovable.app-1782449476179.png" },
     ],
     links: [
       { rel: "icon", type: "image/jpeg", href: sgfLogo.url },
