@@ -47,13 +47,14 @@ export const Route = createFileRoute("/")({
 const statIcons = [HeartPulse, Droplets, Activity, Building2];
 
 const programIcons = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
+const programSlugs = ["emergency", "blood", "education", "community", "relief"] as const;
 const reasonIcons = [ShieldCheck, Clock, HandHeart, Eye, Award];
 
 function Home() {
   const t = useT();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
-  const programs = programIcons.map((icon, i) => ({ icon, ...t.home.programs[i] }));
+  const programs = programIcons.map((icon, i) => ({ icon, slug: programSlugs[i], ...t.home.programs[i] }));
   const reasons = reasonIcons.map((icon, i) => ({ icon, ...t.home.reasons[i] }));
 
   return (
