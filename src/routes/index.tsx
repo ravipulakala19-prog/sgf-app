@@ -9,7 +9,7 @@ import {
   Eye,
   Award,
   ArrowRight,
-  Newspaper,
+  
   Activity,
   Building2,
   Users,
@@ -255,16 +255,6 @@ function Home() {
             <p className="max-w-2xl text-muted-foreground">
               {t.home.mediaStrip}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className="flex h-16 w-36 items-center justify-center rounded-lg border border-dashed border-border bg-card text-xs text-muted-foreground"
-                >
-                  <Newspaper className="mr-2 size-5" /> Press {n}
-                </div>
-              ))}
-            </div>
             <Link to="/media" className="inline-flex items-center gap-1 text-sm font-bold text-red">
               {t.home.seeMedia} <ArrowRight className="size-4" />
             </Link>
