@@ -70,7 +70,8 @@ export function ProgramOrbit() {
               y1="50"
               x2={x}
               y2={y}
-              stroke={p.style.from}
+              stroke="currentColor"
+              className="text-border"
               strokeWidth="0.5"
               strokeDasharray="1.5 1.5"
               opacity="0.35"
@@ -79,10 +80,9 @@ export function ProgramOrbit() {
         })}
       </svg>
 
-      {/* Soft glowing backdrop */}
+      {/* Soft static backdrop */}
       <div
-        className="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-saffron/10 blur-2xl"
-        style={{ animation: "sgf-pulse-glow 6s ease-in-out infinite" }}
+        className="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/40 blur-2xl"
         aria-hidden="true"
       />
 
