@@ -48,6 +48,7 @@ export const Route = createFileRoute("/media")({
 function Media() {
   const t = useT();
   const gallery = gallerySrcs.map((src, i) => ({ src, caption: t.media.gallery[i] }));
+  const clippings = clippingSrcs.map((src, i) => ({ src, caption: t.media.clippings[i] }));
   const coverage = t.media.coverage;
   return (
     <>
