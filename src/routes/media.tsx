@@ -118,20 +118,51 @@ function Media() {
           {clippings.map((c, i) => (
             <Reveal key={c.src} delay={i * 50}>
               <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                <div className="overflow-hidden bg-muted/30">
+                <button
+                  type="button"
+                  onClick={() => setLightbox(c)}
+                  className="block w-full cursor-zoom-in overflow-hidden bg-muted/30"
+                  aria-label="View full image"
+                >
                   <img
                     src={c.src}
                     alt={c.caption}
                     loading="lazy"
-                    className="w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
+                </button>
                 <figcaption className="p-4 text-sm text-muted-foreground">{c.caption}</figcaption>
               </figure>
             </Reveal>
           ))}
         </div>
       </section>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20"
+            aria-label="Close"
+          >
+            <X className="size-6" />
+          </button>
+          <figure className="max-h-[90vh] max-w-4xl" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={lightbox.src}
+              alt={lightbox.caption}
+              className="max-h-[80vh] w-auto rounded-lg object-contain"
+            />
+            <figcaption className="mt-3 text-center text-sm text-white/80">{lightbox.caption}</figcaption>
+          </figure>
+        </div>
+      )}
 
 
       <section className="bg-blue">
