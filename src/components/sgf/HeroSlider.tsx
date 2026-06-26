@@ -61,17 +61,17 @@ export function HeroSlider() {
                 className={`relative grid items-stretch overflow-hidden rounded-2xl shadow-lg ring-1 ring-border md:h-[24rem] md:grid-cols-5 ${slide.tint}`}
               >
                 {/* Text */}
-                <div className="order-2 flex flex-col justify-center gap-3 p-6 sm:p-8 md:order-1 md:col-span-2 lg:p-10">
+                <div className="order-2 flex flex-col justify-start gap-2.5 p-6 sm:p-8 md:order-1 md:col-span-2 md:justify-center lg:p-10">
                   <p className="font-heading text-2xl font-extrabold leading-tight text-red sm:text-3xl lg:text-4xl">
                     {slide.highlight}
                   </p>
                   <h2 className="font-heading text-xl font-bold leading-snug text-blue sm:text-2xl lg:text-3xl">
                     {slide.title}
                   </h2>
-                  <p className="text-sm text-muted-foreground sm:text-base">{slide.sub}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{slide.sub}</p>
                   <Link
                     to={slide.to}
-                    className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-red-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
+                    className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-red-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
                   >
                     {slide.cta} <ArrowRight className="size-4 sm:size-5" />
                   </Link>
