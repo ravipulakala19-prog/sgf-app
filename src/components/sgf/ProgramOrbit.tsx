@@ -38,7 +38,7 @@ export function ProgramOrbit() {
 
   return (
     <div
-      className="relative mx-auto mt-10 aspect-square w-full max-w-[34rem]"
+      className="relative mx-auto mt-10 aspect-square w-[88vw] max-w-[30rem]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
