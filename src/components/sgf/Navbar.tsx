@@ -9,7 +9,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { t, toggle } = useLanguage();
-  const langName = t.langName;
+  
 
   const navLinks = [
     { label: t.nav.home, to: "/" },
