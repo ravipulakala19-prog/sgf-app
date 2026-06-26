@@ -17,11 +17,21 @@ import press7 from "@/assets/media/press/press-7.jpg.asset.json";
 import press8 from "@/assets/media/press/press-8.jpg.asset.json";
 import press9 from "@/assets/media/press/press-9.jpg.asset.json";
 import press10 from "@/assets/media/press/press-10.jpg.asset.json";
+import press11 from "@/assets/media/press/press-11.jpg.asset.json";
+import press12 from "@/assets/media/press/press-12.jpg.asset.json";
+import press13 from "@/assets/media/press/press-13.jpg.asset.json";
+import press14 from "@/assets/media/press/press-14.jpg.asset.json";
+import press15 from "@/assets/media/press/press-15.jpg.asset.json";
+import press16 from "@/assets/media/press/press-16.jpg.asset.json";
+import press17 from "@/assets/media/press/press-17.jpg.asset.json";
+import press18 from "@/assets/media/press/press-18.jpg.asset.json";
 
 const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url];
 const clippingSrcs = [
   press1.url, press2.url, press3.url, press4.url, press5.url,
   press6.url, press7.url, press8.url, press9.url, press10.url,
+  press11.url, press12.url, press13.url, press14.url, press15.url,
+  press16.url, press17.url, press18.url,
 ];
 
 export const Route = createFileRoute("/media")({
