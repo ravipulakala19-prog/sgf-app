@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark, Smartphone } from "lucide-react";
-import { UpiQr } from "@/components/sgf/UpiQr";
+import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark } from "lucide-react";
+import { DonateQrFlow } from "@/components/sgf/DonateQrFlow";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
@@ -78,25 +78,9 @@ function Donate() {
           {/* Payment details */}
           <Reveal delay={120}>
             <div className="flex flex-col gap-6">
-              {/* UPI */}
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="size-6 text-blue" aria-hidden="true" />
-                  <h3 className="font-heading text-xl font-bold text-blue">{t.donate.upiTitle}</h3>
-                </div>
-                <div className="mt-5 grid gap-5 sm:grid-cols-[auto_1fr] sm:items-center">
-                  <div className="mx-auto grid place-items-center rounded-xl border border-border bg-white p-3">
-                    <UpiQr size={160} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t.donate.upiId}</p>
-                    <p className="font-heading text-lg font-bold text-foreground break-all">{donate.upiId}</p>
-                    <p className="mt-3 text-sm text-muted-foreground">
-                      {t.donate.upiHint}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {/* UPI — interactive QR flow */}
+              <DonateQrFlow />
+
 
               {/* Bank */}
               <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
