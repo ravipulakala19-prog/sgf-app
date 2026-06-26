@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark, Smartphone } from "lucide-react";
-import { UpiQr } from "@/components/sgf/UpiQr";
+import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark } from "lucide-react";
+import { DonateQrFlow } from "@/components/sgf/DonateQrFlow";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
