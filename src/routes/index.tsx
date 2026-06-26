@@ -3,9 +3,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   HeartPulse,
   Droplets,
-  GraduationCap,
-  Users,
-  LifeBuoy,
   ShieldCheck,
   Clock,
   HandHeart,
