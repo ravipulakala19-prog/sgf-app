@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote, X } from "lucide-react";
+import { useState } from "react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { useT } from "@/lib/i18n";
 import galleryDonation from "@/assets/media/gallery-1.jpg.asset.json";
