@@ -2,6 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeartPulse, Droplets, GraduationCap, Users, LifeBuoy, ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { useT } from "@/lib/i18n";
+import emergencyImg from "@/assets/media/gallery-1.jpg.asset.json";
+import bloodImg from "@/assets/media/gallery-blood.jpg.asset.json";
+import educationImg from "@/assets/media/gallery-education.jpg.asset.json";
+import communityImg from "@/assets/slider/slide-5.jpg.asset.json";
+import reliefImg from "@/assets/media/gallery-relief.jpg.asset.json";
 
 export const Route = createFileRoute("/what-we-do")({
   head: () => ({
