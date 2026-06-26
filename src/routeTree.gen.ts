@@ -18,6 +18,7 @@ import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgramsProgramRouteImport } from './routes/programs.$program'
 
 const WhatWeDoRoute = WhatWeDoRouteImport.update({
   id: '/what-we-do',
@@ -64,6 +65,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramsProgramRoute = ProgramsProgramRouteImport.update({
+  id: '/programs/$program',
+  path: '/programs/$program',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/volunteer'
     | '/what-we-do'
+    | '/programs/$program'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/volunteer'
     | '/what-we-do'
+    | '/programs/$program'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/volunteer'
     | '/what-we-do'
+    | '/programs/$program'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
   WhatWeDoRoute: typeof WhatWeDoRoute
+  ProgramsProgramRoute: typeof ProgramsProgramRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programs/$program': {
+      id: '/programs/$program'
+      path: '/programs/$program'
+      fullPath: '/programs/$program'
+      preLoaderRoute: typeof ProgramsProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,
   WhatWeDoRoute: WhatWeDoRoute,
+  ProgramsProgramRoute: ProgramsProgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

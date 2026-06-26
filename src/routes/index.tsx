@@ -136,8 +136,8 @@ function Home() {
                   <h3 className="mt-4 font-heading text-lg font-bold text-blue">{p.title}</h3>
                   <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.desc}</p>
                   <Link
-                    to="/what-we-do"
-                    hash={p.slug}
+                    to="/programs/$program"
+                    params={{ program: p.slug }}
                     className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-red transition-colors group-hover:gap-2"
                   >
                     {t.home.learnMore} <ArrowRight className="size-4" />
