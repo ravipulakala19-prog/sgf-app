@@ -7,8 +7,22 @@ import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
 import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
 import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
 import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
+import press1 from "@/assets/media/press/press-1.jpg.asset.json";
+import press2 from "@/assets/media/press/press-2.jpg.asset.json";
+import press3 from "@/assets/media/press/press-3.jpg.asset.json";
+import press4 from "@/assets/media/press/press-4.jpg.asset.json";
+import press5 from "@/assets/media/press/press-5.jpg.asset.json";
+import press6 from "@/assets/media/press/press-6.jpg.asset.json";
+import press7 from "@/assets/media/press/press-7.jpg.asset.json";
+import press8 from "@/assets/media/press/press-8.jpg.asset.json";
+import press9 from "@/assets/media/press/press-9.jpg.asset.json";
+import press10 from "@/assets/media/press/press-10.jpg.asset.json";
 
 const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url];
+const clippingSrcs = [
+  press1.url, press2.url, press3.url, press4.url, press5.url,
+  press6.url, press7.url, press8.url, press9.url, press10.url,
+];
 
 export const Route = createFileRoute("/media")({
   head: () => ({
@@ -34,6 +48,7 @@ export const Route = createFileRoute("/media")({
 function Media() {
   const t = useT();
   const gallery = gallerySrcs.map((src, i) => ({ src, caption: t.media.gallery[i] }));
+  const clippings = clippingSrcs.map((src, i) => ({ src, caption: t.media.clippings[i] }));
   const coverage = t.media.coverage;
   return (
     <>
@@ -107,8 +122,32 @@ function Media() {
         </div>
       </section>
 
+      {/* Press clippings grid */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <h2 className="font-heading text-3xl font-bold text-blue">{t.media.clippingsTitle}</h2>
+          <p className="mt-3 text-muted-foreground">{t.media.clippingsDesc}</p>
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {clippings.map((c, i) => (
+            <Reveal key={c.src} delay={i * 50}>
+              <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+                <div className="overflow-hidden bg-muted/30">
+                  <img
+                    src={c.src}
+                    alt={c.caption}
+                    loading="lazy"
+                    className="w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="p-4 text-sm text-muted-foreground">{c.caption}</figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-      {/* Coverage themes */}
+
       <section className="bg-blue">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal>
