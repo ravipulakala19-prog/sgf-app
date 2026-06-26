@@ -7,8 +7,22 @@ import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
 import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
 import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
 import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
+import press1 from "@/assets/media/press/press-1.jpg.asset.json";
+import press2 from "@/assets/media/press/press-2.jpg.asset.json";
+import press3 from "@/assets/media/press/press-3.jpg.asset.json";
+import press4 from "@/assets/media/press/press-4.jpg.asset.json";
+import press5 from "@/assets/media/press/press-5.jpg.asset.json";
+import press6 from "@/assets/media/press/press-6.jpg.asset.json";
+import press7 from "@/assets/media/press/press-7.jpg.asset.json";
+import press8 from "@/assets/media/press/press-8.jpg.asset.json";
+import press9 from "@/assets/media/press/press-9.jpg.asset.json";
+import press10 from "@/assets/media/press/press-10.jpg.asset.json";
 
 const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url];
+const clippingSrcs = [
+  press1.url, press2.url, press3.url, press4.url, press5.url,
+  press6.url, press7.url, press8.url, press9.url, press10.url,
+];
 
 export const Route = createFileRoute("/media")({
   head: () => ({
