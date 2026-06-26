@@ -9,7 +9,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { t, toggle } = useLanguage();
-  const langName = t.langName;
+  
 
   const navLinks = [
     { label: t.nav.home, to: "/" },
@@ -49,11 +49,11 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-sm font-semibold text-blue transition-colors hover:bg-accent"
-            aria-label={`Switch language to ${langName}`}
+            className="inline-flex items-center justify-center rounded-full border border-border p-2.5 text-blue transition-colors hover:bg-accent"
+            aria-label={`Switch language to ${t.langName}`}
+            title={t.langName}
           >
-            <Languages className="size-4" aria-hidden="true" />
-            {langName}
+            <Languages className="size-5" aria-hidden="true" />
           </button>
 
           <Link
