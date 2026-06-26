@@ -46,6 +46,27 @@ export const siteConfig = {
     { value: 100, suffix: "+", label: "Cancer & Kidney Patients Supported" },
     { value: 50, suffix: "+", label: "Communities Served in Srikakulam" },
   ],
+
+  // Volunteer network — EDIT THESE
+  volunteers: {
+    total: 520, // total registered volunteers
+    activeToday: 48, // approx. volunteers active in the field today
+    cities: 32, // towns / mandals covered
+    yearsActive: 6,
+    // Core coordinators / team leads shown on the volunteers page.
+    // Add or edit members here. Photo is optional (initials show otherwise).
+    team: [
+      { name: "Coordinator Name", role: "Founder & President", area: "Srikakulam" },
+      { name: "Coordinator Name", role: "General Secretary", area: "Srikakulam" },
+      { name: "Coordinator Name", role: "Blood Donation Lead", area: "Amadalavalasa" },
+      { name: "Coordinator Name", role: "Medical Aid Coordinator", area: "Tekkali" },
+      { name: "Coordinator Name", role: "Education Programs Lead", area: "Palasa" },
+      { name: "Coordinator Name", role: "Disaster Response Lead", area: "Ichchapuram" },
+      { name: "Coordinator Name", role: "Community Welfare Lead", area: "Narasannapeta" },
+      { name: "Coordinator Name", role: "Volunteer & Outreach", area: "Rajam" },
+    ],
+  },
+
 };
 
 export type SiteConfig = typeof siteConfig;
