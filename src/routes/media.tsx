@@ -122,8 +122,32 @@ function Media() {
         </div>
       </section>
 
+      {/* Press clippings grid */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <h2 className="font-heading text-3xl font-bold text-blue">{t.media.clippingsTitle}</h2>
+          <p className="mt-3 text-muted-foreground">{t.media.clippingsDesc}</p>
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {clippings.map((c, i) => (
+            <Reveal key={c.src} delay={i * 50}>
+              <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+                <div className="overflow-hidden bg-muted/30">
+                  <img
+                    src={c.src}
+                    alt={c.caption}
+                    loading="lazy"
+                    className="w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="p-4 text-sm text-muted-foreground">{c.caption}</figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-      {/* Coverage themes */}
+
       <section className="bg-blue">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal>
