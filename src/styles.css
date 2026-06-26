@@ -208,7 +208,10 @@
 
 
 @media (prefers-reduced-motion: reduce) {
-  [style*="sgf-orbit-spin"] {
+  [style*="sgf-orbit-spin"],
+  [style*="sgf-pulse-glow"],
+  [style*="sgf-float"] {
     animation: none !important;
   }
 }
+
