@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { HeroSlider } from "@/components/sgf/HeroSlider";
+import { ProgramOrbit } from "@/components/sgf/ProgramOrbit";
 import { CountUp } from "@/components/sgf/CountUp";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
