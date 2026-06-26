@@ -52,7 +52,7 @@ export function ProgramOrbit() {
       >
         {programs.map((p, i) => {
           const angle = (i / count) * 2 * Math.PI - Math.PI / 2;
-          const radiusPct = 50;
+          const radiusPct = 42;
           const x = 50 + radiusPct * Math.cos(angle);
           const y = 50 + radiusPct * Math.sin(angle);
           const isActive = active === i;
