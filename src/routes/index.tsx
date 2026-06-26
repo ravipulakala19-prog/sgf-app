@@ -126,26 +126,10 @@ function Home() {
               {t.home.whatWeDoTitle}
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {programs.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80}>
-                <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
-                  <span className="grid size-12 place-items-center rounded-xl bg-saffron/15 text-saffron">
-                    <p.icon className="size-6" aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-4 font-heading text-lg font-bold text-blue">{p.title}</h3>
-                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.desc}</p>
-                  <Link
-                    to="/programs/$program"
-                    params={{ program: p.slug }}
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-red transition-colors group-hover:gap-2"
-                  >
-                    {t.home.learnMore} <ArrowRight className="size-4" />
-                  </Link>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <p className="mt-4 text-center text-sm text-muted-foreground">{t.home.learnMore}</p>
+          <Reveal delay={120}>
+            <ProgramOrbit />
+          </Reveal>
         </div>
       </section>
 
