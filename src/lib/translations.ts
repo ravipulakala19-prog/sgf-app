@@ -139,29 +139,84 @@ const en = {
       {
         title: "Emergency Medical Assistance",
         body: "Medical emergencies often place enormous financial burdens on families. SGF provides immediate financial assistance, mobilizes donors, and helps patients receive timely medical treatment. Our volunteers have supported numerous patients suffering from kidney disease, cancer, pneumonia, organ failure, accident injuries, and other life-threatening conditions.",
-        points: [],
+        points: ["Direct financial aid to patients", "Donor mobilization drives", "Hospital coordination support", "Follow-up and rehabilitation"],
+        detail: [
+          "When a family faces a sudden medical crisis, the cost of treatment can be overwhelming. SGF steps in immediately — raising funds, connecting patients with hospitals, and ensuring no life is lost simply because help arrived too late.",
+          "Over recent months our volunteers have handed financial aid directly to patients battling cancer, kidney failure, and accident trauma, often delivering cheques at the bedside and following up through the entire course of treatment.",
+        ],
+        activities: [
+          "₹25,000+ financial aid delivered to critical patients",
+          "Coordinated treatment for kidney and cancer patients",
+          "Emergency support for accident and trauma victims",
+          "Medicine and hospital-bill assistance for poor families",
+        ],
       },
       {
         title: "Blood Donation Services",
         body: "Blood saves lives, and SGF has built an active network of voluntary blood donors ready to respond during emergencies. Hundreds of patients have benefited through our blood donor network.",
         points: ["Blood donation camps", "Emergency blood donor coordination", "Blood donation awareness programs", "Youth donor registration drives"],
+        detail: [
+          "Our 24/7 donor network responds to emergency blood requests across Srikakulam District, matching donors to patients within hours and saving lives during accidents, surgeries, and childbirth complications.",
+          "We host regular donation camps in colleges and villages, registering new youth donors and building a reliable, voluntary supply of every blood group.",
+        ],
+        activities: [
+          "Regular voluntary blood donation camps",
+          "Emergency donor coordination, day and night",
+          "Youth and college donor registration drives",
+          "Awareness sessions on safe, regular donation",
+        ],
       },
       {
         title: "Educational Support",
         body: "Education changes lives. We believe every child deserves an equal opportunity to learn and succeed, so SGF supports students with the essentials they need.",
         points: ["School bags", "Blankets", "Educational materials", "Basic necessities", "Assistance for disadvantaged students"],
+        detail: [
+          "We equip disadvantaged students with the tools to stay in school — school bags, notebooks, uniforms, and learning materials — so that financial hardship never ends a child's education.",
+          "Beyond supplies, our volunteers mentor and encourage students, distribute essentials at government schools, and support bright children from struggling families.",
+        ],
+        activities: [
+          "School bag and stationery distribution",
+          "School uniform donations to government schools",
+          "Learning materials for disadvantaged students",
+          "Winter blankets and basic necessities",
+        ],
       },
       {
         title: "Community Welfare",
         body: "Our volunteers actively organize community development activities that encourage social responsibility while improving public well-being.",
         points: ["Public awareness campaigns", "Road safety programs", "Health awareness", "Community service initiatives", "Rural welfare activities"],
+        detail: [
+          "Healthy, informed communities are stronger communities. SGF runs awareness campaigns and welfare drives that reach villages often overlooked by larger programs.",
+          "From road safety initiatives to public health drives and rural welfare work, our volunteers turn out wherever the community needs a helping hand.",
+        ],
+        activities: [
+          "Road safety and helmet awareness campaigns",
+          "Public health and hygiene drives",
+          "Rural welfare and cleanliness initiatives",
+          "Community events that bring people together",
+        ],
       },
       {
         title: "Disaster & Family Relief",
         body: "Unexpected accidents, natural disasters, and personal tragedies can devastate families overnight. SGF provides immediate relief and rehabilitation support.",
         points: ["Emergency financial support", "Essential supplies", "Household assistance", "Community fundraising", "Rehabilitation support"],
+        detail: [
+          "When tragedy strikes a family overnight, SGF is among the first to respond — with emergency funds, essential supplies, and a plan to help them rebuild.",
+          "We organize community fundraising for bereaved and affected families and stay with them through rehabilitation, not just the first days of crisis.",
+        ],
+        activities: [
+          "Emergency financial support to affected families",
+          "Essential supplies and household assistance",
+          "Community fundraising for those in crisis",
+          "Long-term rehabilitation support",
+        ],
       },
     ],
+    backToAll: "All programs",
+    recentWork: "Recent work & activities",
+    gallery: "In the field",
+    overview: "Overview",
+
     ctaTitle: "Help us do more",
     ctaDesc: "Your support powers every one of these programs.",
     donateNow: "Donate Now",
