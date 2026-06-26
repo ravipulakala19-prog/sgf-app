@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Send, MessageCircle, MapPin, Phone, Mail, QrCode } from "lucide-react";
+import { Facebook, Instagram, Send, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 import { Logo } from "./Logo";
+import { UpiQr } from "./UpiQr";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
 
@@ -63,12 +64,8 @@ export function Footer() {
 
         <div>
           <h2 className="font-heading text-base font-bold text-white">{t.footer.scanToGive}</h2>
-          <div className="mt-4 grid aspect-square w-32 place-items-center rounded-lg bg-white/10 text-center text-xs text-white/60">
-            {/* SWAP: replace with your UPI / donation QR image */}
-            <span className="flex flex-col items-center gap-2">
-              <QrCode className="size-10" />
-              {t.footer.qrPlaceholder}
-            </span>
+          <div className="mt-4 w-32 rounded-lg bg-white p-2">
+            <UpiQr size={112} />
           </div>
           <Link to="/donate" className="mt-4 inline-block rounded-full bg-red px-4 py-2 text-sm font-bold text-red-foreground transition-transform hover:scale-105">
             {t.footer.donateNow}
