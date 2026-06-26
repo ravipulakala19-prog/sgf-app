@@ -14,13 +14,13 @@ import logo from "@/assets/sgf-logo.jpeg.asset.json";
 const programIcons: LucideIcon[] = [HeartPulse, Droplets, GraduationCap, HandHeart, LifeBuoy];
 const programSlugs = ["emergency", "blood", "education", "community", "relief"] as const;
 
-/** Per-node gradient + glow color (brand palette). */
+/** Per-node gradient + glow color (decent palette, no red). */
 const nodeStyles = [
-  { from: "var(--red)", glow: "var(--red)" },
-  { from: "var(--saffron)", glow: "var(--saffron)" },
   { from: "var(--blue)", glow: "var(--blue)" },
+  { from: "var(--saffron)", glow: "var(--saffron)" },
+  { from: "#0d9488", glow: "#0d9488" },
   { from: "var(--green)", glow: "var(--green)" },
-  { from: "var(--red)", glow: "var(--red)" },
+  { from: "#6d28d9", glow: "#6d28d9" },
 ];
 
 export function ProgramOrbit() {
@@ -151,18 +151,14 @@ export function ProgramOrbit() {
 
       {/* Center hub */}
       <div
-        className="absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center overflow-hidden rounded-full bg-blue p-3 text-center shadow-2xl ring-4 ring-saffron/50 sm:size-40"
+        className="absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-blue shadow-2xl ring-4 ring-saffron/50 sm:size-40"
         style={{ animation: "sgf-float 5s ease-in-out infinite" }}
       >
         <img
           src={logo.url}
-          alt=""
-          aria-hidden="true"
-          className="size-12 rounded-full object-cover ring-2 ring-white/70 sm:size-16"
+          alt="Special Guys Foundation"
+          className="size-full rounded-full object-cover ring-2 ring-white/70"
         />
-        <span className="mt-1.5 text-[0.65rem] font-semibold leading-tight text-white/90 sm:text-xs">
-          {t.home.whatWeDoTitle}
-        </span>
       </div>
     </div>
   );
