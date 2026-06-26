@@ -9,6 +9,7 @@ const en = {
     whatWeDo: "What We Do",
     impact: "Impact",
     volunteer: "Volunteer",
+    volunteers: "Our Team",
     media: "Media",
     contact: "Contact",
     donate: "Donate",
