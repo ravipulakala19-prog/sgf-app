@@ -121,7 +121,7 @@ function Home() {
               {t.home.whatWeDoTitle}
             </h2>
           </Reveal>
-          <p className="mt-4 text-center text-sm text-muted-foreground">{t.home.learnMore}</p>
+          <p className="mt-4 text-center text-sm text-muted-foreground">{t.home.learnMore} →</p>
           <Reveal delay={120}>
             <ProgramOrbit />
           </Reveal>
