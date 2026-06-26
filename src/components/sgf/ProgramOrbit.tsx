@@ -70,7 +70,8 @@ export function ProgramOrbit() {
               y1="50"
               x2={x}
               y2={y}
-              stroke={p.style.from}
+              stroke="currentColor"
+              className="text-border"
               strokeWidth="0.5"
               strokeDasharray="1.5 1.5"
               opacity="0.35"
@@ -79,10 +80,9 @@ export function ProgramOrbit() {
         })}
       </svg>
 
-      {/* Soft glowing backdrop */}
+      {/* Soft static backdrop */}
       <div
-        className="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-saffron/10 blur-2xl"
-        style={{ animation: "sgf-pulse-glow 6s ease-in-out infinite" }}
+        className="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/40 blur-2xl"
         aria-hidden="true"
       />
 
@@ -117,27 +117,12 @@ export function ProgramOrbit() {
                 }}
               >
                 <span className="relative flex flex-col items-center">
-                  {/* Pulsing glow halo */}
                   <span
-                    className="absolute top-1/2 left-1/2 -z-10 size-24 -translate-x-1/2 -translate-y-[60%] rounded-full blur-md sm:size-28"
-                    style={{
-                      backgroundColor: p.style.glow,
-                      opacity: 0.3,
-                      animation: "sgf-pulse-glow 4s ease-in-out infinite",
-                      animationDelay: `${i * 0.4}s`,
-                    }}
-                    aria-hidden="true"
-                  />
-                  <span
-                    className={`flex size-20 items-center justify-center rounded-full text-white shadow-xl ring-4 ring-background transition-all duration-500 ease-out sm:size-24 ${
+                    className={`flex size-20 items-center justify-center rounded-full bg-white text-blue shadow-md ring-1 ring-border transition-all duration-300 ease-out sm:size-24 ${
                       isActive ? "scale-150" : "group-hover:scale-110 group-hover:-translate-y-1"
                     }`}
-                    style={{
-                      backgroundImage: `linear-gradient(140deg, ${p.style.from}, color-mix(in oklab, ${p.style.from} 70%, black))`,
-                      boxShadow: `0 10px 30px -8px ${p.style.glow}`,
-                    }}
                   >
-                    <p.icon className="size-8 sm:size-9" strokeWidth={2.2} aria-hidden="true" />
+                    <p.icon className="size-9 sm:size-10" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <span className="mt-3 block max-w-[7.5rem] rounded-full bg-background/90 px-2 py-0.5 text-center text-xs font-bold leading-tight text-blue shadow-sm backdrop-blur">
                     {p.title}
