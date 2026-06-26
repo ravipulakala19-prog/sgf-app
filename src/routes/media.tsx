@@ -106,35 +106,6 @@ function Media() {
         </div>
       </section>
 
-      {/* Press clipping */}
-      <section className="bg-muted/30">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl font-bold text-blue">{t.media.newsTitle}</h2>
-            <p className="mt-3 text-muted-foreground">
-              {t.media.newsDesc}
-            </p>
-          </Reveal>
-          <Reveal className="mt-12">
-            <article className="mx-auto max-w-md overflow-hidden rounded-2xl border border-border bg-card shadow-md">
-              <img
-                src={pressNewsTime.url}
-                alt="News Time feature: SGF provides Rs. 25,000 financial assistance to a family in Kanchili Mandal"
-                loading="lazy"
-                className="w-full object-cover"
-              />
-              <div className="p-5">
-                <p className="font-heading text-sm font-bold uppercase tracking-wide text-saffron">{t.media.pressSource}</p>
-                <h3 className="mt-1 font-heading text-lg font-bold text-blue">{t.media.pressHeadline}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t.media.pressBody}
-                </p>
-              </div>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Press clippings grid */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
