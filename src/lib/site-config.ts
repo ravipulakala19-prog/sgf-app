@@ -31,6 +31,7 @@ export const siteConfig = {
   donate: {
     campaignUrl: "https://www.donatekart.com/",
     upiId: "specialguysfoundation@upi",
+    payeeName: "Special Guys Foundation",
     bank: {
       accountName: "Special Guys Foundation",
       accountNumber: "0000 0000 0000",
