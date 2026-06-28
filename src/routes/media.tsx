@@ -28,7 +28,7 @@ import press16 from "@/assets/media/press/press-16.jpg.asset.json";
 import press17 from "@/assets/media/press/press-17.jpg.asset.json";
 import press18 from "@/assets/media/press/press-18.jpg.asset.json";
 
-const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url];
+const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url];
 const clippingSrcs = [
   press1.url, press2.url, press3.url, press4.url, press5.url,
   press6.url, press7.url, press8.url, press9.url, press10.url,
