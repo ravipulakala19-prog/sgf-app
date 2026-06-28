@@ -100,7 +100,7 @@ export const Route = createFileRoute("/media")({
 function Media() {
   const t = useT();
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
-  const gallery = gallerySrcs.map((src, i) => ({ src, caption: t.media.gallery[i] }));
+  const gallery = gallerySrcs.map((src, i) => ({ src, caption: t.media.gallery[i] ?? t.media.fieldTitle }));
   const clippings = [
     { src: pressNewsTime.url, caption: t.media.pressBody },
     ...clippingSrcs.map((src, i) => ({ src, caption: t.media.clippings[i] })),
