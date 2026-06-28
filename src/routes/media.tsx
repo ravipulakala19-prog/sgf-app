@@ -8,6 +8,7 @@ import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
 import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
 import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
 import galleryField from "@/assets/media/gallery-field.jpg.asset.json";
+import galleryField2 from "@/assets/media/gallery-field-2.jpg.asset.json";
 import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
 import press1 from "@/assets/media/press/press-1.jpg.asset.json";
 import press2 from "@/assets/media/press/press-2.jpg.asset.json";
@@ -28,7 +29,7 @@ import press16 from "@/assets/media/press/press-16.jpg.asset.json";
 import press17 from "@/assets/media/press/press-17.jpg.asset.json";
 import press18 from "@/assets/media/press/press-18.jpg.asset.json";
 
-const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url];
+const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url, galleryField2.url];
 const clippingSrcs = [
   press1.url, press2.url, press3.url, press4.url, press5.url,
   press6.url, press7.url, press8.url, press9.url, press10.url,
