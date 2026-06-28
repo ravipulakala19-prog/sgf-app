@@ -7,6 +7,7 @@ import galleryDonation from "@/assets/media/gallery-1.jpg.asset.json";
 import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
 import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
 import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
+import galleryField from "@/assets/media/gallery-field.jpg.asset.json";
 import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
 import press1 from "@/assets/media/press/press-1.jpg.asset.json";
 import press2 from "@/assets/media/press/press-2.jpg.asset.json";
