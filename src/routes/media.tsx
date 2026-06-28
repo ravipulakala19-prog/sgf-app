@@ -60,7 +60,15 @@ import press16 from "@/assets/media/press/press-16.jpg.asset.json";
 import press17 from "@/assets/media/press/press-17.jpg.asset.json";
 import press18 from "@/assets/media/press/press-18.jpg.asset.json";
 
-const gallerySrcs = [galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url, galleryField2.url];
+const gallerySrcs = [
+  galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url, galleryField2.url,
+  galleryField3.url, galleryField4.url, galleryField5.url, galleryField6.url, galleryField7.url, galleryField8.url,
+  galleryField9.url, galleryField10.url, galleryField11.url, galleryField12.url, galleryField13.url, galleryField14.url,
+  galleryField15.url, galleryField16.url, galleryField17.url, galleryField18.url, galleryField19.url, galleryField20.url,
+  galleryField21.url, galleryField22.url, galleryField23.url, galleryField24.url, galleryField25.url, galleryField26.url,
+  galleryField27.url, galleryField28.url, galleryField29.url, galleryField30.url, galleryField31.url, galleryField32.url,
+  galleryField33.url,
+];
 const clippingSrcs = [
   press1.url, press2.url, press3.url, press4.url, press5.url,
   press6.url, press7.url, press8.url, press9.url, press10.url,
