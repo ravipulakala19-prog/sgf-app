@@ -44,7 +44,8 @@ async function notify(subject: string, lines: string[]): Promise<void> {
   // submission is still treated as a success.
   try {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    await supabaseAdmin.rpc("enqueue_email", {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabaseAdmin as any).rpc("enqueue_email", {
       queue_name: "transactional_emails",
       message: {
         to: NOTIFY_EMAIL,
@@ -56,6 +57,7 @@ async function notify(subject: string, lines: string[]): Promise<void> {
     console.error("[notify] email notification skipped:", err);
   }
 }
+
 
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => contactSchema.parse(data))
