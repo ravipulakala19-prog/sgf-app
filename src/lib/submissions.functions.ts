@@ -17,6 +17,8 @@ const contactSchema = z.object({
   message: z.string().trim().min(1, "Message is required").max(2000),
 });
 
+const optionalText = (max: number) => z.string().trim().max(max).optional().or(z.literal(""));
+
 const volunteerSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   phone: z
@@ -32,8 +34,17 @@ const volunteerSchema = z.object({
     .optional()
     .or(z.literal(""))
     .refine((v) => !v || z.string().email().safeParse(v).success, "Enter a valid email address"),
-  city: z.string().trim().max(100).optional().or(z.literal("")),
-  message: z.string().trim().max(2000).optional().or(z.literal("")),
+  city: optionalText(100),
+  bloodGroup: optionalText(10),
+  gender: optionalText(20),
+  age: z
+    .union([z.literal(""), z.coerce.number().int().min(1).max(120)])
+    .optional(),
+  occupation: optionalText(100),
+  availability: optionalText(100),
+  interests: optionalText(300),
+  profilePicturePath: optionalText(500),
+  message: optionalText(2000),
 });
 
 const NOTIFY_EMAIL = "specialguysfoundationsgf@gmail.com";
