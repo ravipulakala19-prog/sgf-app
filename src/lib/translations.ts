@@ -284,6 +284,9 @@ const en = {
     city: "City / Town",
     helpHow: "How would you like to help?",
     signUp: "Sign Up to Volunteer",
+    sending: "Submitting…",
+    errorGeneric: "Something went wrong. Please try again.",
+    fixErrors: "Please correct the highlighted fields.",
     supportTitle: "Prefer to support financially?",
     supportDesc: "Your donation is another powerful way to make a difference.",
     donateNow: "Donate Now",
@@ -431,6 +434,9 @@ const en = {
     subject: "Subject",
     message: "Message",
     sendMessage: "Send Message",
+    sending: "Sending…",
+    errorGeneric: "Something went wrong. Please try again.",
+    fixErrors: "Please correct the highlighted fields.",
   },
 };
 
@@ -719,6 +725,9 @@ const te: Dict = {
     city: "నగరం / పట్టణం",
     helpHow: "మీరు ఎలా సహాయపడాలనుకుంటున్నారు?",
     signUp: "వాలంటీర్‌గా నమోదు చేసుకోండి",
+    sending: "సమర్పిస్తోంది…",
+    errorGeneric: "ఏదో తప్పు జరిగింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+    fixErrors: "దయచేసి గుర్తించిన ఫీల్డ్‌లను సరిచేయండి.",
     supportTitle: "ఆర్థికంగా మద్దతు ఇవ్వాలనుకుంటున్నారా?",
     supportDesc: "మీ విరాళం మార్పు తీసుకురావడానికి మరో శక్తివంతమైన మార్గం.",
     donateNow: "ఇప్పుడే విరాళం",
@@ -866,6 +875,9 @@ const te: Dict = {
     subject: "విషయం",
     message: "సందేశం",
     sendMessage: "సందేశం పంపండి",
+    sending: "పంపుతోంది…",
+    errorGeneric: "ఏదో తప్పు జరిగింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+    fixErrors: "దయచేసి గుర్తించిన ఫీల్డ్‌లను సరిచేయండి.",
   },
 };
 
