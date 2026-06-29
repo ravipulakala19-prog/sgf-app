@@ -149,46 +149,51 @@ function Contact() {
           <Reveal delay={120}>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
               <h2 className="font-heading text-2xl font-bold text-blue">{t.contact.formTitle}</h2>
-              {submitted ? (
+              {status === "success" ? (
                 <div className="mt-6 flex items-center gap-3 rounded-xl bg-green/10 p-5 text-green" role="status">
                   <Check className="size-6 shrink-0" aria-hidden="true" />
                   <p className="font-medium">{t.contact.thanks}</p>
                 </div>
               ) : (
-                <form
-                  className="mt-6 flex flex-col gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                >
+                <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+                  {formError && (
+                    <div className="flex items-start gap-2 rounded-lg bg-red/10 p-3 text-sm text-red" role="alert">
+                      <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                      <span>{formError}</span>
+                    </div>
+                  )}
                   <div>
                     <label htmlFor="c-name" className="text-sm font-medium text-foreground">{t.contact.fullName}</label>
-                    <input id="c-name" type="text" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <input id="c-name" name="name" type="text" required className={`${inputBase} ${errClass("name")}`} />
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="c-email" className="text-sm font-medium text-foreground">{t.contact.email}</label>
-                      <input id="c-email" type="email" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                      <input id="c-email" name="email" type="email" required className={`${inputBase} ${errClass("email")}`} />
                     </div>
                     <div>
                       <label htmlFor="c-phone" className="text-sm font-medium text-foreground">{t.contact.phone}</label>
-                      <input id="c-phone" type="tel" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                      <input id="c-phone" name="phone" type="tel" className={`${inputBase} ${errClass("phone")}`} />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="c-subject" className="text-sm font-medium text-foreground">{t.contact.subject}</label>
-                    <input id="c-subject" type="text" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <input id="c-subject" name="subject" type="text" className={`${inputBase} ${errClass("subject")}`} />
                   </div>
                   <div>
                     <label htmlFor="c-msg" className="text-sm font-medium text-foreground">{t.contact.message}</label>
-                    <textarea id="c-msg" rows={4} required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <textarea id="c-msg" name="message" rows={4} required className={`${inputBase} ${errClass("message")}`} />
                   </div>
-                  <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 font-bold text-red-foreground transition-transform hover:scale-105">
-                    {t.contact.sendMessage} <Send className="size-5" />
+                  <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-3.5 font-bold text-red-foreground transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70">
+                    {status === "submitting" ? (
+                      <>{t.contact.sending} <Loader2 className="size-5 animate-spin" /></>
+                    ) : (
+                      <>{t.contact.sendMessage} <Send className="size-5" /></>
+                    )}
                   </button>
                 </form>
               )}
+
             </div>
           </Reveal>
         </div>
