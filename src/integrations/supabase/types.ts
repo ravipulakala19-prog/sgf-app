@@ -46,31 +46,52 @@ export type Database = {
       }
       volunteer_signups: {
         Row: {
+          age: number | null
+          areas_of_interest: string | null
+          availability: string | null
+          blood_group: string | null
           city: string | null
           created_at: string
           email: string | null
+          gender: string | null
           id: string
           message: string | null
           name: string
+          occupation: string | null
           phone: string
+          profile_picture_url: string | null
         }
         Insert: {
+          age?: number | null
+          areas_of_interest?: string | null
+          availability?: string | null
+          blood_group?: string | null
           city?: string | null
           created_at?: string
           email?: string | null
+          gender?: string | null
           id?: string
           message?: string | null
           name: string
+          occupation?: string | null
           phone: string
+          profile_picture_url?: string | null
         }
         Update: {
+          age?: number | null
+          areas_of_interest?: string | null
+          availability?: string | null
+          blood_group?: string | null
           city?: string | null
           created_at?: string
           email?: string | null
+          gender?: string | null
           id?: string
           message?: string | null
           name?: string
+          occupation?: string | null
           phone?: string
+          profile_picture_url?: string | null
         }
         Relationships: []
       }
