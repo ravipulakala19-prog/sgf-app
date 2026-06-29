@@ -32,11 +32,11 @@ type LightboxState = { img: MediaImage; caption: string } | null;
 function Media() {
   const t = useT();
   const [lightbox, setLightbox] = useState<LightboxState>(null);
-  const gallery = galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle }));
+  const gallery = galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle })).reverse();
   const clippings = [
     { img: pressNewstime, caption: t.media.pressBody },
     ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
-  ];
+  ].reverse();
   const coverage = t.media.coverage;
   return (
     <>
