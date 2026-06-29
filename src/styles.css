@@ -147,6 +147,10 @@
   );
 }
 
+@utility brand-bar {
+  background: linear-gradient(90deg, #0000cd 0%, #1e40af 45%, #ff9933 100%);
+}
+
 @utility tricolor-gradient {
   background: linear-gradient(135deg, rgba(255, 153, 51, 0.12), rgba(255, 255, 255, 0.05) 50%, rgba(19, 136, 8, 0.12));
 }
