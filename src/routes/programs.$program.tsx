@@ -3,6 +3,8 @@ import { HeartPulse, Droplets, GraduationCap, Users, LifeBuoy, ArrowRight, Arrow
 import { Reveal } from "@/components/sgf/Reveal";
 import { useT } from "@/lib/i18n";
 import { programSlugs, programIndex, programMedia, type ProgramSlug } from "@/lib/program-media";
+import { BlurImage } from "@/components/sgf/BlurImage";
+import { mediaByFull } from "@/lib/media-assets";
 
 const icons = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
 
@@ -121,18 +123,33 @@ function ProgramDetail() {
               <h2 className="font-heading text-2xl font-bold text-blue">{t.whatWeDo.gallery}</h2>
             </Reveal>
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {media.gallery.map((src, gi) => (
-                <Reveal key={src} delay={gi * 70}>
-                  <div className="overflow-hidden rounded-xl shadow-sm ring-1 ring-border">
-                    <img
-                      src={src}
-                      alt={`${p.title} activity ${gi + 1}`}
-                      loading="lazy"
-                      className="aspect-square size-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                </Reveal>
-              ))}
+              {media.gallery.map((src, gi) => {
+                const opt = mediaByFull[src];
+                return (
+                  <Reveal key={src} delay={gi * 70}>
+                    <div className="overflow-hidden rounded-xl shadow-sm ring-1 ring-border">
+                      {opt ? (
+                        <BlurImage
+                          src={opt.thumb}
+                          blur={opt.blur}
+                          width={opt.w}
+                          height={opt.h}
+                          alt={`${p.title} activity ${gi + 1}`}
+                          className="aspect-square size-full transition-transform duration-300 hover:scale-105"
+                        />
+                      ) : (
+                        <img
+                          src={src}
+                          alt={`${p.title} activity ${gi + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="aspect-square size-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                      )}
+                    </div>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
