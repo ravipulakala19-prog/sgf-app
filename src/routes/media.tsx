@@ -93,15 +93,18 @@ function Media() {
 
 
       {/* Press clippings grid */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
-        <Reveal className="mx-auto max-w-2xl text-center">
+      <section className="py-16 lg:py-24">
+        <Reveal className="mx-auto max-w-2xl px-4 text-center sm:px-6">
           <h2 className="font-heading text-3xl font-bold text-blue">{t.media.clippingsTitle}</h2>
           <p className="mt-3 text-muted-foreground">{t.media.clippingsDesc}</p>
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {clippings.map((c, i) => (
-            <Reveal key={c.img.thumb} delay={i * 50}>
-              <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+        <div className="marquee mt-12 select-none">
+          <div className="marquee-track marquee-track-reverse gap-4">
+            {[...clippings, ...clippings].map((c, i) => (
+              <figure
+                key={`${c.img.thumb}-${i}`}
+                className="group flex w-44 shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm sm:w-52"
+              >
                 <button
                   type="button"
                   onClick={() => setLightbox({ img: c.img, caption: c.caption })}
@@ -117,10 +120,10 @@ function Media() {
                     className="aspect-[3/4] w-full transition-transform duration-500 group-hover:scale-105"
                   />
                 </button>
-                <figcaption className="p-4 text-sm text-muted-foreground">{c.caption}</figcaption>
+                <figcaption className="p-3 text-xs text-muted-foreground line-clamp-2">{c.caption}</figcaption>
               </figure>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

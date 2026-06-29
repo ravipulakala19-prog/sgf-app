@@ -222,6 +222,10 @@
   animation: sgf-marquee 60s linear infinite;
 }
 
+@utility marquee-track-reverse {
+  animation-direction: reverse;
+}
+
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
