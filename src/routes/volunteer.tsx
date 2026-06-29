@@ -37,7 +37,54 @@ const wayIcons = [Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles];
 function Volunteer() {
   const t = useT();
   const ways = wayIcons.map((icon, i) => ({ icon, label: t.volunteer.ways[i] }));
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formError, setFormError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const submit = useServerFn(submitVolunteer);
+
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const values = {
+      name: String(fd.get("name") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      city: String(fd.get("city") || "").trim(),
+      message: String(fd.get("message") || "").trim(),
+    };
+
+    const errs: Record<string, string> = {};
+    if (!values.name) errs.name = t.volunteer.fullName;
+    if (!values.phone || !phoneRe.test(values.phone)) errs.phone = t.volunteer.phone;
+    if (values.email && !emailRe.test(values.email)) errs.email = t.volunteer.email;
+
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
+      setFormError(t.volunteer.fixErrors);
+      setStatus("error");
+      return;
+    }
+
+    setFieldErrors({});
+    setFormError(null);
+    setStatus("submitting");
+    try {
+      await submit({ data: values });
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setFormError(err instanceof Error ? err.message : t.volunteer.errorGeneric);
+      setStatus("error");
+    }
+  }
+
+  const inputBase =
+    "mt-1 w-full rounded-lg border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron";
+  const errClass = (f: string) => (fieldErrors[f] ? "border-red" : "border-border");
+
 
   return (
     <>
