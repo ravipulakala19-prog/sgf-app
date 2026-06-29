@@ -55,17 +55,20 @@ function Media() {
       </section>
 
       {/* Photo gallery */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
-        <Reveal className="mx-auto max-w-2xl text-center">
+      <section className="py-16 lg:py-24">
+        <Reveal className="mx-auto max-w-2xl px-4 text-center sm:px-6">
           <h2 className="font-heading text-3xl font-bold text-blue">{t.media.fieldTitle}</h2>
           <p className="mt-3 text-muted-foreground">
             {t.media.fieldDesc}
           </p>
         </Reveal>
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {gallery.map((g, i) => (
-            <Reveal key={g.img.thumb} delay={i * 30}>
-              <figure className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+        <div className="marquee mt-12 select-none">
+          <div className="marquee-track gap-4">
+            {[...gallery, ...gallery].map((g, i) => (
+              <figure
+                key={`${g.img.thumb}-${i}`}
+                className="group w-48 shrink-0 overflow-hidden rounded-xl border border-border bg-card shadow-sm sm:w-56"
+              >
                 <button
                   type="button"
                   onClick={() => setLightbox({ img: g.img, caption: g.caption })}
@@ -83,10 +86,11 @@ function Media() {
                 </button>
                 <figcaption className="p-2.5 text-xs text-muted-foreground line-clamp-2">{g.caption}</figcaption>
               </figure>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
+
 
       {/* Press clippings grid */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
