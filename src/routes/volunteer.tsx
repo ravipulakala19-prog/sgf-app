@@ -41,7 +41,29 @@ function Volunteer() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const submit = useServerFn(submitVolunteer);
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      setFieldErrors((prev) => ({ ...prev, photo: t.volunteer.photoHint }));
+      return;
+    }
+    setFieldErrors((prev) => {
+      const { photo, ...rest } = prev;
+      return rest;
+    });
+    setPhotoFile(file);
+    setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function clearPhoto() {
+    setPhotoFile(null);
+    setPhotoPreview(null);
+  }
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
