@@ -106,6 +106,13 @@ export const submitVolunteer = createServerFn({ method: "POST" })
       phone: data.phone,
       email: data.email || null,
       city: data.city || null,
+      blood_group: data.bloodGroup || null,
+      gender: data.gender || null,
+      age: typeof data.age === "number" ? data.age : null,
+      occupation: data.occupation || null,
+      availability: data.availability || null,
+      areas_of_interest: data.interests || null,
+      profile_picture_url: data.profilePicturePath || null,
       message: data.message || null,
     });
     if (error) {
@@ -118,6 +125,13 @@ export const submitVolunteer = createServerFn({ method: "POST" })
       `<strong>Phone:</strong> ${data.phone}`,
       `<strong>Email:</strong> ${data.email || "—"}`,
       `<strong>City:</strong> ${data.city || "—"}`,
+      `<strong>Blood group:</strong> ${data.bloodGroup || "—"}`,
+      `<strong>Gender:</strong> ${data.gender || "—"}`,
+      `<strong>Age:</strong> ${typeof data.age === "number" ? data.age : "—"}`,
+      `<strong>Occupation:</strong> ${data.occupation || "—"}`,
+      `<strong>Availability:</strong> ${data.availability || "—"}`,
+      `<strong>Areas of interest:</strong> ${data.interests || "—"}`,
+      `<strong>Profile photo:</strong> ${data.profilePicturePath || "—"}`,
       `<strong>How they can help:</strong> ${data.message || "—"}`,
     ]);
 
