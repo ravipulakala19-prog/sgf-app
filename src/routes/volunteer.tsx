@@ -76,6 +76,13 @@ function Volunteer() {
       phone: String(fd.get("phone") || "").trim(),
       email: String(fd.get("email") || "").trim(),
       city: String(fd.get("city") || "").trim(),
+      bloodGroup: String(fd.get("bloodGroup") || "").trim(),
+      gender: String(fd.get("gender") || "").trim(),
+      age: String(fd.get("age") || "").trim(),
+      occupation: String(fd.get("occupation") || "").trim(),
+      availability: String(fd.get("availability") || "").trim(),
+      interests: String(fd.get("interests") || "").trim(),
+      profilePicturePath: "",
       message: String(fd.get("message") || "").trim(),
     };
 
@@ -95,6 +102,20 @@ function Volunteer() {
     setFormError(null);
     setStatus("submitting");
     try {
+      if (photoFile) {
+        const ext = (photoFile.name.split(".").pop() || "jpg").toLowerCase();
+        const path = `${crypto.randomUUID()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from("volunteer-photos")
+          .upload(path, photoFile, { contentType: photoFile.type, upsert: false });
+        if (upErr) {
+          console.error(upErr);
+          setFormError(t.volunteer.photoError);
+          setStatus("error");
+          return;
+        }
+        values.profilePicturePath = path;
+      }
       await submit({ data: values });
       setStatus("success");
     } catch (err) {
@@ -107,6 +128,7 @@ function Volunteer() {
   const inputBase =
     "mt-1 w-full rounded-lg border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron";
   const errClass = (f: string) => (fieldErrors[f] ? "border-red" : "border-border");
+
 
 
   return (
