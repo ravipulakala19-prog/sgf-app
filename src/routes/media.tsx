@@ -62,10 +62,10 @@ function Media() {
             {t.media.fieldDesc}
           </p>
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {gallery.map((g, i) => (
-            <Reveal key={g.img.thumb} delay={i * 60}>
-              <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+            <Reveal key={g.img.thumb} delay={i * 30}>
+              <figure className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm">
                 <button
                   type="button"
                   onClick={() => setLightbox({ img: g.img, caption: g.caption })}
@@ -78,10 +78,10 @@ function Media() {
                     width={g.img.w}
                     height={g.img.h}
                     alt={g.caption}
-                    className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-square w-full transition-transform duration-500 group-hover:scale-105"
                   />
                 </button>
-                <figcaption className="p-5 text-sm text-muted-foreground">{g.caption}</figcaption>
+                <figcaption className="p-2.5 text-xs text-muted-foreground line-clamp-2">{g.caption}</figcaption>
               </figure>
             </Reveal>
           ))}
