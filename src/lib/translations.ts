@@ -407,6 +407,7 @@ const en = {
       "₹10,000 immediate support to late Aligi Kamala's daughter, Nelavanka",
       "School uniforms distributed to Class 6 students at Ichapuram, Kaviti & Jadupudi hostels",
       "Blood donation camp — 30 donors at Jadupudi, World Blood Donor Day — Mee24News",
+      "₹15,000 financial aid to cancer patient Ayush's family, Tippanaputtuga (29-06-2026)",
     ],
     featuredFor: "Featured for consistent efforts in supporting:",
     coverage: [
@@ -850,6 +851,7 @@ const te: Dict = {
       "దివంగత అలిగి కమల కుమార్తెకు ₹10,000 తక్షణ సహాయం — నెలవంక",
       "ఇచ్ఛాపురం, కవిటి, జాడపూడి వసతి గృహాల్లో 6వ తరగతి విద్యార్థినులకు దుప్పట్ల పంపిణీ",
       "రక్తదాన శిబిరం — జాడపూడిలో 30 మంది దాతలు, ప్రపంచ రక్తదాతల దినోత్సవం — మీ24న్యూస్",
+      "క్యాన్సర్ బాధితుడు ఆయుష్ కుటుంబానికి ₹15,000 ఆర్థిక సహాయం, తిప్పనపుట్టుగ (29-06-2026)",
     ],
     featuredFor: "వీటికి మద్దతు ఇవ్వడంలో స్థిరమైన కృషికి ప్రముఖంగా నిలిచింది:",
     coverage: [
