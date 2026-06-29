@@ -2,79 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Quote, X } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/sgf/Reveal";
+import { BlurImage } from "@/components/sgf/BlurImage";
 import { useT } from "@/lib/i18n";
-import galleryDonation from "@/assets/media/gallery-1.jpg.asset.json";
-import galleryRelief from "@/assets/media/gallery-relief.jpg.asset.json";
-import galleryBlood from "@/assets/media/gallery-blood.jpg.asset.json";
-import galleryEducation from "@/assets/media/gallery-education.jpg.asset.json";
-import galleryField from "@/assets/media/gallery-field.jpg.asset.json";
-import galleryField2 from "@/assets/media/gallery-field-2.jpg.asset.json";
-import galleryField3 from "@/assets/media/gallery-field-3.jpg.asset.json";
-import galleryField4 from "@/assets/media/gallery-field-4.jpg.asset.json";
-import galleryField5 from "@/assets/media/gallery-field-5.jpg.asset.json";
-import galleryField6 from "@/assets/media/gallery-field-6.jpg.asset.json";
-import galleryField7 from "@/assets/media/gallery-field-7.jpg.asset.json";
-import galleryField8 from "@/assets/media/gallery-field-8.jpg.asset.json";
-import galleryField9 from "@/assets/media/gallery-field-9.jpg.asset.json";
-import galleryField10 from "@/assets/media/gallery-field-10.jpg.asset.json";
-import galleryField11 from "@/assets/media/gallery-field-11.jpg.asset.json";
-import galleryField12 from "@/assets/media/gallery-field-12.jpg.asset.json";
-import galleryField13 from "@/assets/media/gallery-field-13.jpg.asset.json";
-import galleryField14 from "@/assets/media/gallery-field-14.jpg.asset.json";
-import galleryField15 from "@/assets/media/gallery-field-15.jpg.asset.json";
-import galleryField16 from "@/assets/media/gallery-field-16.jpg.asset.json";
-import galleryField17 from "@/assets/media/gallery-field-17.jpg.asset.json";
-import galleryField18 from "@/assets/media/gallery-field-18.jpg.asset.json";
-import galleryField19 from "@/assets/media/gallery-field-19.jpg.asset.json";
-import galleryField20 from "@/assets/media/gallery-field-20.jpg.asset.json";
-import galleryField21 from "@/assets/media/gallery-field-21.jpg.asset.json";
-import galleryField22 from "@/assets/media/gallery-field-22.jpg.asset.json";
-import galleryField23 from "@/assets/media/gallery-field-23.jpg.asset.json";
-import galleryField24 from "@/assets/media/gallery-field-24.jpg.asset.json";
-import galleryField25 from "@/assets/media/gallery-field-25.jpg.asset.json";
-import galleryField26 from "@/assets/media/gallery-field-26.jpg.asset.json";
-import galleryField27 from "@/assets/media/gallery-field-27.jpg.asset.json";
-import galleryField28 from "@/assets/media/gallery-field-28.jpg.asset.json";
-import galleryField29 from "@/assets/media/gallery-field-29.jpg.asset.json";
-import galleryField30 from "@/assets/media/gallery-field-30.jpg.asset.json";
-import galleryField31 from "@/assets/media/gallery-field-31.jpg.asset.json";
-import galleryField32 from "@/assets/media/gallery-field-32.jpg.asset.json";
-import galleryField33 from "@/assets/media/gallery-field-33.jpg.asset.json";
-import pressNewsTime from "@/assets/media/press-newstime.jpg.asset.json";
-import press1 from "@/assets/media/press/press-1.jpg.asset.json";
-import press2 from "@/assets/media/press/press-2.jpg.asset.json";
-import press3 from "@/assets/media/press/press-3.jpg.asset.json";
-import press4 from "@/assets/media/press/press-4.jpg.asset.json";
-import press5 from "@/assets/media/press/press-5.jpg.asset.json";
-import press6 from "@/assets/media/press/press-6.jpg.asset.json";
-import press7 from "@/assets/media/press/press-7.jpg.asset.json";
-import press8 from "@/assets/media/press/press-8.jpg.asset.json";
-import press9 from "@/assets/media/press/press-9.jpg.asset.json";
-import press10 from "@/assets/media/press/press-10.jpg.asset.json";
-import press11 from "@/assets/media/press/press-11.jpg.asset.json";
-import press12 from "@/assets/media/press/press-12.jpg.asset.json";
-import press13 from "@/assets/media/press/press-13.jpg.asset.json";
-import press14 from "@/assets/media/press/press-14.jpg.asset.json";
-import press15 from "@/assets/media/press/press-15.jpg.asset.json";
-import press16 from "@/assets/media/press/press-16.jpg.asset.json";
-import press17 from "@/assets/media/press/press-17.jpg.asset.json";
-import press18 from "@/assets/media/press/press-18.jpg.asset.json";
-
-const gallerySrcs = [
-  galleryDonation.url, galleryBlood.url, galleryEducation.url, galleryRelief.url, galleryField.url, galleryField2.url,
-  galleryField3.url, galleryField4.url, galleryField5.url, galleryField6.url, galleryField7.url, galleryField8.url,
-  galleryField9.url, galleryField10.url, galleryField11.url, galleryField12.url, galleryField13.url, galleryField14.url,
-  galleryField15.url, galleryField16.url, galleryField17.url, galleryField18.url, galleryField19.url, galleryField20.url,
-  galleryField21.url, galleryField22.url, galleryField23.url, galleryField24.url, galleryField25.url, galleryField26.url,
-  galleryField27.url, galleryField28.url, galleryField29.url, galleryField30.url, galleryField31.url, galleryField32.url,
-  galleryField33.url,
-];
-const clippingSrcs = [
-  press1.url, press2.url, press3.url, press4.url, press5.url,
-  press6.url, press7.url, press8.url, press9.url, press10.url,
-  press11.url, press12.url, press13.url, press14.url, press15.url,
-  press16.url, press17.url, press18.url,
-];
+import { galleryImages, pressClippings, pressNewstime, type MediaImage } from "@/lib/media-assets";
 
 export const Route = createFileRoute("/media")({
   head: () => ({
@@ -97,13 +27,15 @@ export const Route = createFileRoute("/media")({
   component: Media,
 });
 
+type LightboxState = { img: MediaImage; caption: string } | null;
+
 function Media() {
   const t = useT();
-  const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
-  const gallery = gallerySrcs.map((src, i) => ({ src, caption: t.media.gallery[i] ?? t.media.fieldTitle }));
+  const [lightbox, setLightbox] = useState<LightboxState>(null);
+  const gallery = galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle }));
   const clippings = [
-    { src: pressNewsTime.url, caption: t.media.pressBody },
-    ...clippingSrcs.map((src, i) => ({ src, caption: t.media.clippings[i] })),
+    { img: pressNewstime, caption: t.media.pressBody },
+    ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
   ];
   const coverage = t.media.coverage;
   return (
@@ -132,16 +64,23 @@ function Media() {
         </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {gallery.map((g, i) => (
-            <Reveal key={g.src} delay={i * 60}>
+            <Reveal key={g.img.thumb} delay={i * 60}>
               <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                <div className="overflow-hidden">
-                  <img
-                    src={g.src}
+                <button
+                  type="button"
+                  onClick={() => setLightbox({ img: g.img, caption: g.caption })}
+                  className="block w-full cursor-zoom-in"
+                  aria-label="View full image"
+                >
+                  <BlurImage
+                    src={g.img.thumb}
+                    blur={g.img.blur}
+                    width={g.img.w}
+                    height={g.img.h}
                     alt={g.caption}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
+                </button>
                 <figcaption className="p-5 text-sm text-muted-foreground">{g.caption}</figcaption>
               </figure>
             </Reveal>
@@ -157,19 +96,21 @@ function Media() {
         </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {clippings.map((c, i) => (
-            <Reveal key={c.src} delay={i * 50}>
+            <Reveal key={c.img.thumb} delay={i * 50}>
               <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                 <button
                   type="button"
-                  onClick={() => setLightbox(c)}
-                  className="block w-full cursor-zoom-in overflow-hidden bg-muted/30"
+                  onClick={() => setLightbox({ img: c.img, caption: c.caption })}
+                  className="block w-full cursor-zoom-in"
                   aria-label="View full image"
                 >
-                  <img
-                    src={c.src}
+                  <BlurImage
+                    src={c.img.thumb}
+                    blur={c.img.blur}
+                    width={c.img.w}
+                    height={c.img.h}
                     alt={c.caption}
-                    loading="lazy"
-                    className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-[3/4] w-full transition-transform duration-500 group-hover:scale-105"
                   />
                 </button>
                 <figcaption className="p-4 text-sm text-muted-foreground">{c.caption}</figcaption>
@@ -196,9 +137,13 @@ function Media() {
           </button>
           <figure className="max-h-[90vh] max-w-4xl" onClick={(e) => e.stopPropagation()}>
             <img
-              src={lightbox.src}
+              src={lightbox.img.full}
               alt={lightbox.caption}
+              width={lightbox.img.w}
+              height={lightbox.img.h}
+              decoding="async"
               className="max-h-[80vh] w-auto rounded-lg object-contain"
+              style={{ backgroundImage: `url(${lightbox.img.blur})`, backgroundSize: "cover" }}
             />
             <figcaption className="mt-3 text-center text-sm text-white/80">{lightbox.caption}</figcaption>
           </figure>
