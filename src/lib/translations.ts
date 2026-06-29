@@ -36,6 +36,12 @@ const en = {
       { highlight: "Together We Win.", title: "Uniting People for a Cause", sub: "Community Events & Tournaments", cta: "Get Involved" },
     ],
   },
+  heroIntro: {
+    h1: "Special Guys Foundation (SGF) – Sharing Hands, Saving Lives",
+    sub: "A volunteer-driven non-profit in Srikakulam District, supporting underprivileged families, medical emergencies, students, and rural communities across Andhra Pradesh.",
+    donateBtn: "Donate Now",
+    volunteerBtn: "Become a Volunteer",
+  },
   stats: [
     "Emergency Cases Responded To",
     "Blood Donation Camps",
@@ -465,6 +471,12 @@ const te: Dict = {
       { highlight: "సురక్షితమైన రోడ్లు.", title: "ప్రాణాలను కాపాడే అవగాహన", sub: "50+ సమాజాలకు చేరువ", cta: "మా పని చూడండి" },
       { highlight: "కలిసి గెలుద్దాం.", title: "ఒక లక్ష్యం కోసం ప్రజలను ఏకం చేయడం", sub: "సమాజ కార్యక్రమాలు & టోర్నమెంట్లు", cta: "భాగస్వాములు అవ్వండి" },
     ],
+  },
+  heroIntro: {
+    h1: "స్పెషల్ గయ్స్ ఫౌండేషన్ (SGF) – సహాయ హస్తాలు, ప్రాణాలను కాపాడుట",
+    sub: "శ్రీకాకుళం జిల్లాలో వాలంటీర్ ఆధారిత స్వచ్ఛంద సంస్థ — నిరుపేద కుటుంబాలు, వైద్య అత్యవసర పరిస్థితులు, విద్యార్థులు మరియు గ్రామీణ సమాజాలకు ఆంధ్రప్రదేశ్ అంతటా మద్దతు అందిస్తోంది.",
+    donateBtn: "ఇప్పుడే విరాళం",
+    volunteerBtn: "వాలంటీర్ అవ్వండి",
   },
   stats: [
     "స్పందించిన అత్యవసర కేసులు",
