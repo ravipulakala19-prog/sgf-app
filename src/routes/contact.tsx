@@ -30,9 +30,57 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formError, setFormError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const { contact, social } = siteConfig;
   const t = useT();
+  const submit = useServerFn(submitContact);
+
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const values = {
+      name: String(fd.get("name") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      subject: String(fd.get("subject") || "").trim(),
+      message: String(fd.get("message") || "").trim(),
+    };
+
+    const errs: Record<string, string> = {};
+    if (!values.name) errs.name = t.contact.fullName;
+    if (!values.email || !emailRe.test(values.email)) errs.email = t.contact.email;
+    if (values.phone && !phoneRe.test(values.phone)) errs.phone = t.contact.phone;
+    if (!values.message) errs.message = t.contact.message;
+
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
+      setFormError(t.contact.fixErrors);
+      setStatus("error");
+      return;
+    }
+
+    setFieldErrors({});
+    setFormError(null);
+    setStatus("submitting");
+    try {
+      await submit({ data: values });
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setFormError(err instanceof Error ? err.message : t.contact.errorGeneric);
+      setStatus("error");
+    }
+  }
+
+  const inputBase =
+    "mt-1 w-full rounded-lg border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron";
+  const errClass = (f: string) => (fieldErrors[f] ? "border-red" : "border-border");
+
 
   const details = [
     { icon: MapPin, label: t.contact.location, value: contact.location, href: undefined },
