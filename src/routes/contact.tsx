@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, MessageCircle, Send, Check, Facebook, Instagram } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { MapPin, Phone, Mail, MessageCircle, Send, Check, Facebook, Instagram, Loader2, AlertCircle } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
+import { submitContact } from "@/lib/submissions.functions";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
