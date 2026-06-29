@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check, Loader2, AlertCircle } from "lucide-react";
+import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check, Loader2, AlertCircle, Upload, X } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
 import { submitVolunteer } from "@/lib/submissions.functions";
+import { supabase } from "@/integrations/supabase/client";
 import volunteersImg from "@/assets/sgf-volunteers.jpeg.asset.json";
 
 
@@ -40,7 +41,29 @@ function Volunteer() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const submit = useServerFn(submitVolunteer);
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      setFieldErrors((prev) => ({ ...prev, photo: t.volunteer.photoHint }));
+      return;
+    }
+    setFieldErrors((prev) => {
+      const { photo, ...rest } = prev;
+      return rest;
+    });
+    setPhotoFile(file);
+    setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function clearPhoto() {
+    setPhotoFile(null);
+    setPhotoPreview(null);
+  }
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
@@ -53,6 +76,13 @@ function Volunteer() {
       phone: String(fd.get("phone") || "").trim(),
       email: String(fd.get("email") || "").trim(),
       city: String(fd.get("city") || "").trim(),
+      bloodGroup: String(fd.get("bloodGroup") || "").trim(),
+      gender: String(fd.get("gender") || "").trim(),
+      age: String(fd.get("age") || "").trim(),
+      occupation: String(fd.get("occupation") || "").trim(),
+      availability: String(fd.get("availability") || "").trim(),
+      interests: String(fd.get("interests") || "").trim(),
+      profilePicturePath: "",
       message: String(fd.get("message") || "").trim(),
     };
 
@@ -72,6 +102,20 @@ function Volunteer() {
     setFormError(null);
     setStatus("submitting");
     try {
+      if (photoFile) {
+        const ext = (photoFile.name.split(".").pop() || "jpg").toLowerCase();
+        const path = `${crypto.randomUUID()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from("volunteer-photos")
+          .upload(path, photoFile, { contentType: photoFile.type, upsert: false });
+        if (upErr) {
+          console.error(upErr);
+          setFormError(t.volunteer.photoError);
+          setStatus("error");
+          return;
+        }
+        values.profilePicturePath = path;
+      }
       await submit({ data: values });
       setStatus("success");
     } catch (err) {
@@ -84,6 +128,7 @@ function Volunteer() {
   const inputBase =
     "mt-1 w-full rounded-lg border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron";
   const errClass = (f: string) => (fieldErrors[f] ? "border-red" : "border-border");
+
 
 
   return (
@@ -169,14 +214,86 @@ function Volunteer() {
                       <input id="v-email" name="email" type="email" className={`${inputBase} ${errClass("email")}`} />
                     </div>
                   </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
+                      <input id="v-city" name="city" type="text" className={`${inputBase} ${errClass("city")}`} />
+                    </div>
+                    <div>
+                      <label htmlFor="v-blood" className="text-sm font-medium text-foreground">{t.volunteer.bloodGroup}</label>
+                      <select id="v-blood" name="bloodGroup" defaultValue="" className={`${inputBase} ${errClass("bloodGroup")}`}>
+                        <option value="">{t.volunteer.select}</option>
+                        {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((b) => (
+                          <option key={b} value={b}>{b}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="v-gender" className="text-sm font-medium text-foreground">{t.volunteer.gender}</label>
+                      <select id="v-gender" name="gender" defaultValue="" className={`${inputBase} ${errClass("gender")}`}>
+                        <option value="">{t.volunteer.select}</option>
+                        {t.volunteer.genderOptions.map((g) => (
+                          <option key={g} value={g}>{g}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="v-age" className="text-sm font-medium text-foreground">{t.volunteer.age}</label>
+                      <input id="v-age" name="age" type="number" min={1} max={120} className={`${inputBase} ${errClass("age")}`} />
+                    </div>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="v-occ" className="text-sm font-medium text-foreground">{t.volunteer.occupation}</label>
+                      <input id="v-occ" name="occupation" type="text" className={`${inputBase} ${errClass("occupation")}`} />
+                    </div>
+                    <div>
+                      <label htmlFor="v-avail" className="text-sm font-medium text-foreground">{t.volunteer.availability}</label>
+                      <select id="v-avail" name="availability" defaultValue="" className={`${inputBase} ${errClass("availability")}`}>
+                        <option value="">{t.volunteer.select}</option>
+                        {t.volunteer.availabilityOptions.map((a) => (
+                          <option key={a} value={a}>{a}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
                   <div>
-                    <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
-                    <input id="v-city" name="city" type="text" className={`${inputBase} ${errClass("city")}`} />
+                    <label htmlFor="v-interests" className="text-sm font-medium text-foreground">{t.volunteer.interests}</label>
+                    <input id="v-interests" name="interests" type="text" placeholder={t.volunteer.interestsHint} className={`${inputBase} ${errClass("interests")}`} />
+                  </div>
+                  <div>
+                    <span className="text-sm font-medium text-foreground">{t.volunteer.photo}</span>
+                    <div className="mt-1 flex items-center gap-4">
+                      {photoPreview ? (
+                        <div className="relative">
+                          <img src={photoPreview} alt="" className="size-16 rounded-full object-cover ring-1 ring-border" />
+                          <button type="button" onClick={clearPhoto} aria-label="Remove photo" className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-red text-red-foreground">
+                            <X className="size-3" />
+                          </button>
+                        </div>
+                      ) : (
+                        <span className="grid size-16 place-items-center rounded-full bg-muted text-muted-foreground">
+                          <Upload className="size-5" aria-hidden="true" />
+                        </span>
+                      )}
+                      <label className="cursor-pointer rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted">
+                        {t.volunteer.photoChoose}
+                        <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
+                      </label>
+                    </div>
+                    {fieldErrors.photo ? (
+                      <p className="mt-1 text-xs text-red">{fieldErrors.photo}</p>
+                    ) : (
+                      <p className="mt-1 text-xs text-muted-foreground">{t.volunteer.photoHint}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="v-msg" className="text-sm font-medium text-foreground">{t.volunteer.helpHow}</label>
                     <textarea id="v-msg" name="message" rows={3} className={`${inputBase} ${errClass("message")}`} />
                   </div>
+
                   <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-bold text-saffron-foreground transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70">
                     {status === "submitting" ? (
                       <>{t.volunteer.sending} <Loader2 className="size-5 animate-spin" /></>
