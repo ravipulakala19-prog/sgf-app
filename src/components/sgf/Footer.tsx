@@ -17,7 +17,7 @@ export function Footer() {
   ] as const;
   return (
     <footer className="bg-blue text-white">
-      <div className="tricolor-bar h-1 w-full" aria-hidden="true" />
+      
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
           <Logo variant="footer" />
