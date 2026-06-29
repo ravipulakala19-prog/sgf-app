@@ -362,6 +362,8 @@ const en = {
     scanFor: "Scan to donate as",
     scanHint: "Scan with any UPI app to complete your donation.",
     editDetails: "Edit details",
+    trustTitle: "100% goes to verified cases",
+    trustDesc: "Every rupee you contribute is directed to verified beneficiaries and genuine cases — no deductions. You can request a record of exactly how your donation was used at any time.",
     receiptsPre: "For donation receipts or any questions, contact us at ",
   },
   media: {
@@ -803,6 +805,8 @@ const te: Dict = {
     scanFor: "విరాళం ఇచ్చేందుకు స్కాన్ చేయండి",
     scanHint: "మీ విరాళాన్ని పూర్తి చేయడానికి ఏదైనా UPI యాప్‌తో స్కాన్ చేయండి.",
     editDetails: "వివరాలను సవరించండి",
+    trustTitle: "100% ధృవీకరించిన కేసులకే",
+    trustDesc: "మీరు ఇచ్చే ప్రతి రూపాయి ధృవీకరించిన లబ్ధిదారులకు, నిజమైన కేసులకే చేరుతుంది — ఎలాంటి మినహాయింపులు లేవు. మీ విరాళం ఎలా ఉపయోగించబడిందో వివరాలను ఎప్పుడైనా మీరు అడగవచ్చు.",
     receiptsPre: "విరాళం రసీదుల కోసం లేదా ఏవైనా ప్రశ్నల కోసం, మమ్మల్ని ఇక్కడ సంప్రదించండి ",
   },
   media: {
