@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark } from "lucide-react";
+import { ArrowRight, HeartPulse, Droplets, GraduationCap, LifeBuoy, Users, Landmark, ShieldCheck } from "lucide-react";
 import { DonateQrFlow } from "@/components/sgf/DonateQrFlow";
 import { Reveal } from "@/components/sgf/Reveal";
 import { siteConfig } from "@/lib/site-config";
@@ -106,6 +106,17 @@ function Donate() {
                     <dd className="text-right font-medium text-foreground">{donate.bank.bankName}</dd>
                   </div>
                 </dl>
+              </div>
+
+              {/* Trust line */}
+              <div className="rounded-2xl border border-green/30 bg-green/10 p-5">
+                <div className="flex items-start gap-3">
+                  <ShieldCheck className="mt-0.5 size-6 shrink-0 text-green" aria-hidden="true" />
+                  <div>
+                    <p className="font-heading text-base font-bold text-green">{t.donate.trustTitle}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{t.donate.trustDesc}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </Reveal>
