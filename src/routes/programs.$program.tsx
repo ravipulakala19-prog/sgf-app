@@ -3,6 +3,8 @@ import { HeartPulse, Droplets, GraduationCap, Users, LifeBuoy, ArrowRight, Arrow
 import { Reveal } from "@/components/sgf/Reveal";
 import { useT } from "@/lib/i18n";
 import { programSlugs, programIndex, programMedia, type ProgramSlug } from "@/lib/program-media";
+import { BlurImage } from "@/components/sgf/BlurImage";
+import { mediaByFull } from "@/lib/media-assets";
 
 const icons = [HeartPulse, Droplets, GraduationCap, Users, LifeBuoy];
 
