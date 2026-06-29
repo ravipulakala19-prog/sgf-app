@@ -142,44 +142,49 @@ function Volunteer() {
               <p className="mt-2 text-sm text-muted-foreground">
                 {t.volunteer.formDesc}
               </p>
-              {submitted ? (
+              {status === "success" ? (
                 <div className="mt-6 flex items-center gap-3 rounded-xl bg-green/10 p-5 text-green" role="status">
                   <Check className="size-6 shrink-0" aria-hidden="true" />
                   <p className="font-medium">{t.volunteer.thanks}</p>
                 </div>
               ) : (
-                <form
-                  className="mt-6 flex flex-col gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                >
+                <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+                  {formError && (
+                    <div className="flex items-start gap-2 rounded-lg bg-red/10 p-3 text-sm text-red" role="alert">
+                      <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                      <span>{formError}</span>
+                    </div>
+                  )}
                   <div>
                     <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName}</label>
-                    <input id="v-name" type="text" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <input id="v-name" name="name" type="text" required className={`${inputBase} ${errClass("name")}`} />
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone}</label>
-                      <input id="v-phone" type="tel" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                      <input id="v-phone" name="phone" type="tel" required className={`${inputBase} ${errClass("phone")}`} />
                     </div>
                     <div>
                       <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email}</label>
-                      <input id="v-email" type="email" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                      <input id="v-email" name="email" type="email" className={`${inputBase} ${errClass("email")}`} />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
-                    <input id="v-city" type="text" className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <input id="v-city" name="city" type="text" className={`${inputBase} ${errClass("city")}`} />
                   </div>
                   <div>
                     <label htmlFor="v-msg" className="text-sm font-medium text-foreground">{t.volunteer.helpHow}</label>
-                    <textarea id="v-msg" rows={3} className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron" />
+                    <textarea id="v-msg" name="message" rows={3} className={`${inputBase} ${errClass("message")}`} />
                   </div>
-                  <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-bold text-saffron-foreground transition-transform hover:scale-105">
-                    {t.volunteer.signUp} <ArrowRight className="size-5" />
+                  <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-bold text-saffron-foreground transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70">
+                    {status === "submitting" ? (
+                      <>{t.volunteer.sending} <Loader2 className="size-5 animate-spin" /></>
+                    ) : (
+                      <>{t.volunteer.signUp} <ArrowRight className="size-5" /></>
+                    )}
                   </button>
+
                 </form>
               )}
             </div>
