@@ -107,9 +107,6 @@ function Donate() {
                   </div>
                 </dl>
               </div>
-            </div>
-          </Reveal>
-              </div>
 
               {/* Trust line */}
               <div className="rounded-2xl border border-green/30 bg-green/10 p-5">
@@ -121,6 +118,9 @@ function Donate() {
                   </div>
                 </div>
               </div>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       <section className="bg-blue">
