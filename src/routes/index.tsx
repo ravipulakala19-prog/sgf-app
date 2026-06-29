@@ -57,8 +57,35 @@ function Home() {
 
   return (
     <>
+      {/* Hero header */}
+      <section className="bg-background pt-10 sm:pt-14">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <h1 className="font-heading text-3xl font-extrabold leading-tight text-blue sm:text-4xl lg:text-5xl">
+            {t.heroIntro.h1}
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            {t.heroIntro.sub}
+          </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              to="/donate"
+              className="inline-flex items-center gap-2 rounded-full bg-red px-7 py-3 text-sm font-bold text-red-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
+            >
+              {t.heroIntro.donateBtn} <ArrowRight className="size-4 sm:size-5" />
+            </Link>
+            <Link
+              to="/volunteer"
+              className="inline-flex items-center gap-2 rounded-full bg-saffron px-7 py-3 text-sm font-bold text-saffron-foreground shadow-md transition-transform hover:scale-105 sm:text-base"
+            >
+              <UserPlus className="size-4 sm:size-5" /> {t.heroIntro.volunteerBtn}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Hero slider */}
       <HeroSlider />
+
 
 
       {/* Impact stats band */}
