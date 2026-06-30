@@ -149,6 +149,9 @@ function Volunteer() {
 
   return (
     <>
+      {cropSrc && (
+        <PhotoCropper src={cropSrc} onCropped={handleCropped} onCancel={cancelCrop} />
+      )}
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal className="max-w-3xl">
