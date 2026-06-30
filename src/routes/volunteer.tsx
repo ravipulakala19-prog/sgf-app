@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check, Loader2, AlertCircle, Camera, User, X } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
+import { PhotoCropper } from "@/components/sgf/PhotoCropper";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
 import { submitVolunteer } from "@/lib/submissions.functions";
