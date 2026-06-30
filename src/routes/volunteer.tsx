@@ -283,7 +283,7 @@ function Volunteer() {
                     <span className="text-sm font-medium text-foreground">{t.volunteer.photo}</span>
                     <div className="mt-2 flex flex-col items-center gap-3">
                       <label className="group relative cursor-pointer">
-                        <span className="block size-28 overflow-hidden rounded-full bg-muted ring-4 ring-card shadow-md">
+                        <span className="block size-28 overflow-hidden rounded-xl bg-muted ring-4 ring-card shadow-md">
                           {photoPreview ? (
                             <img src={photoPreview} alt="" className="size-full object-cover" />
                           ) : (
@@ -292,15 +292,21 @@ function Volunteer() {
                             </span>
                           )}
                         </span>
-                        <span className="absolute bottom-0 right-0 grid size-9 place-items-center rounded-full border-2 border-card bg-saffron text-saffron-foreground shadow transition-transform group-hover:scale-110">
+                        <span className="absolute bottom-0 right-0 grid size-9 place-items-center rounded-lg border-2 border-card bg-saffron text-saffron-foreground shadow transition-transform group-hover:scale-110">
                           <Camera className="size-4" aria-hidden="true" />
                         </span>
                         <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
                       </label>
                       {photoPreview && (
-                        <button type="button" onClick={clearPhoto} className="inline-flex items-center gap-1 text-xs font-medium text-red hover:underline">
-                          <X className="size-3.5" aria-hidden="true" /> {t.volunteer.photoChoose === "Choose photo" ? "Remove photo" : t.volunteer.photoChoose}
-                        </button>
+                        <div className="flex items-center gap-3">
+                          <label className="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-blue hover:underline">
+                            <Crop className="size-3.5" aria-hidden="true" /> Recrop
+                            <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
+                          </label>
+                          <button type="button" onClick={clearPhoto} className="inline-flex items-center gap-1 text-xs font-medium text-red hover:underline">
+                            <X className="size-3.5" aria-hidden="true" /> Remove
+                          </button>
+                        </div>
                       )}
                     </div>
                     {fieldErrors.photo ? (
