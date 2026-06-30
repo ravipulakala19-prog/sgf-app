@@ -44,10 +44,12 @@ function Volunteer() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const submit = useServerFn(submitVolunteer);
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
+    e.target.value = "";
     if (!file) return;
     if (file.size > 5 * 1024 * 1024) {
       setFieldErrors((prev) => ({ ...prev, photo: t.volunteer.photoHint }));
@@ -57,14 +59,27 @@ function Volunteer() {
       const { photo, ...rest } = prev;
       return rest;
     });
+    setCropSrc(URL.createObjectURL(file));
+  }
+
+  function handleCropped(file: File) {
+    if (photoPreview) URL.revokeObjectURL(photoPreview);
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function cancelCrop() {
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
   }
 
   function clearPhoto() {
     setPhotoFile(null);
     setPhotoPreview(null);
   }
+
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
