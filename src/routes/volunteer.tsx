@@ -265,28 +265,32 @@ function Volunteer() {
                   </div>
                   <div>
                     <span className="text-sm font-medium text-foreground">{t.volunteer.photo}</span>
-                    <div className="mt-1 flex items-center gap-4">
-                      {photoPreview ? (
-                        <div className="relative">
-                          <img src={photoPreview} alt="" className="size-16 rounded-full object-cover ring-1 ring-border" />
-                          <button type="button" onClick={clearPhoto} aria-label="Remove photo" className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-red text-red-foreground">
-                            <X className="size-3" />
-                          </button>
-                        </div>
-                      ) : (
-                        <span className="grid size-16 place-items-center rounded-full bg-muted text-muted-foreground">
-                          <Upload className="size-5" aria-hidden="true" />
+                    <div className="mt-2 flex flex-col items-center gap-3">
+                      <label className="group relative cursor-pointer">
+                        <span className="block size-28 overflow-hidden rounded-full bg-muted ring-4 ring-card shadow-md">
+                          {photoPreview ? (
+                            <img src={photoPreview} alt="" className="size-full object-cover" />
+                          ) : (
+                            <span className="grid size-full place-items-center text-muted-foreground">
+                              <User className="size-12" aria-hidden="true" />
+                            </span>
+                          )}
                         </span>
-                      )}
-                      <label className="cursor-pointer rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted">
-                        {t.volunteer.photoChoose}
+                        <span className="absolute bottom-0 right-0 grid size-9 place-items-center rounded-full border-2 border-card bg-saffron text-saffron-foreground shadow transition-transform group-hover:scale-110">
+                          <Camera className="size-4" aria-hidden="true" />
+                        </span>
                         <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
                       </label>
+                      {photoPreview && (
+                        <button type="button" onClick={clearPhoto} className="inline-flex items-center gap-1 text-xs font-medium text-red hover:underline">
+                          <X className="size-3.5" aria-hidden="true" /> {t.volunteer.photoChoose === "Choose photo" ? "Remove photo" : t.volunteer.photoChoose}
+                        </button>
+                      )}
                     </div>
                     {fieldErrors.photo ? (
-                      <p className="mt-1 text-xs text-red">{fieldErrors.photo}</p>
+                      <p className="mt-1 text-center text-xs text-red">{fieldErrors.photo}</p>
                     ) : (
-                      <p className="mt-1 text-xs text-muted-foreground">{t.volunteer.photoHint}</p>
+                      <p className="mt-1 text-center text-xs text-muted-foreground">{t.volunteer.photoHint}</p>
                     )}
                   </div>
                   <div>
