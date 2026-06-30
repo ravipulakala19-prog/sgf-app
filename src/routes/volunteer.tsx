@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check, Loader2, AlertCircle, Camera, User, X } from "lucide-react";
+import { ArrowRight, Droplets, Search, Megaphone, HandCoins, LifeBuoy, Sparkles, Check, Loader2, AlertCircle, Camera, User, X, Crop } from "lucide-react";
 import { Reveal } from "@/components/sgf/Reveal";
+import { PhotoCropper } from "@/components/sgf/PhotoCropper";
 import { siteConfig } from "@/lib/site-config";
 import { useT } from "@/lib/i18n";
 import { submitVolunteer } from "@/lib/submissions.functions";
@@ -43,10 +44,12 @@ function Volunteer() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const submit = useServerFn(submitVolunteer);
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
+    e.target.value = "";
     if (!file) return;
     if (file.size > 5 * 1024 * 1024) {
       setFieldErrors((prev) => ({ ...prev, photo: t.volunteer.photoHint }));
@@ -56,14 +59,27 @@ function Volunteer() {
       const { photo, ...rest } = prev;
       return rest;
     });
+    setCropSrc(URL.createObjectURL(file));
+  }
+
+  function handleCropped(file: File) {
+    if (photoPreview) URL.revokeObjectURL(photoPreview);
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function cancelCrop() {
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
   }
 
   function clearPhoto() {
     setPhotoFile(null);
     setPhotoPreview(null);
   }
+
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^[+]?[\d][\d\s\-()]{6,18}$/;
@@ -133,6 +149,9 @@ function Volunteer() {
 
   return (
     <>
+      {cropSrc && (
+        <PhotoCropper src={cropSrc} onCropped={handleCropped} onCancel={cancelCrop} />
+      )}
       <section className="tricolor-gradient">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <Reveal className="max-w-3xl">
@@ -267,7 +286,7 @@ function Volunteer() {
                     <span className="text-sm font-medium text-foreground">{t.volunteer.photo}</span>
                     <div className="mt-2 flex flex-col items-center gap-3">
                       <label className="group relative cursor-pointer">
-                        <span className="block size-28 overflow-hidden rounded-full bg-muted ring-4 ring-card shadow-md">
+                        <span className="block size-28 overflow-hidden rounded-xl bg-muted ring-4 ring-card shadow-md">
                           {photoPreview ? (
                             <img src={photoPreview} alt="" className="size-full object-cover" />
                           ) : (
@@ -276,15 +295,21 @@ function Volunteer() {
                             </span>
                           )}
                         </span>
-                        <span className="absolute bottom-0 right-0 grid size-9 place-items-center rounded-full border-2 border-card bg-saffron text-saffron-foreground shadow transition-transform group-hover:scale-110">
+                        <span className="absolute bottom-0 right-0 grid size-9 place-items-center rounded-lg border-2 border-card bg-saffron text-saffron-foreground shadow transition-transform group-hover:scale-110">
                           <Camera className="size-4" aria-hidden="true" />
                         </span>
                         <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
                       </label>
                       {photoPreview && (
-                        <button type="button" onClick={clearPhoto} className="inline-flex items-center gap-1 text-xs font-medium text-red hover:underline">
-                          <X className="size-3.5" aria-hidden="true" /> {t.volunteer.photoChoose === "Choose photo" ? "Remove photo" : t.volunteer.photoChoose}
-                        </button>
+                        <div className="flex items-center gap-3">
+                          <label className="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-blue hover:underline">
+                            <Crop className="size-3.5" aria-hidden="true" /> Recrop
+                            <input type="file" accept="image/png,image/jpeg" className="sr-only" onChange={handlePhotoChange} />
+                          </label>
+                          <button type="button" onClick={clearPhoto} className="inline-flex items-center gap-1 text-xs font-medium text-red hover:underline">
+                            <X className="size-3.5" aria-hidden="true" /> Remove
+                          </button>
+                        </div>
                       )}
                     </div>
                     {fieldErrors.photo ? (
