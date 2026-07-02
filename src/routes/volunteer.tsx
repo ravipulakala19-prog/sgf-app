@@ -105,7 +105,10 @@ function Volunteer() {
     const errs: Record<string, string> = {};
     if (!values.name) errs.name = t.volunteer.fullName;
     if (!values.phone || !phoneRe.test(values.phone)) errs.phone = t.volunteer.phone;
-    if (values.email && !emailRe.test(values.email)) errs.email = t.volunteer.email;
+    if (!values.email || !emailRe.test(values.email)) errs.email = t.volunteer.email;
+    if (!values.city) errs.city = t.volunteer.city;
+    if (!values.bloodGroup) errs.bloodGroup = t.volunteer.bloodGroup;
+    if (!values.gender) errs.gender = t.volunteer.gender;
 
     if (Object.keys(errs).length > 0) {
       setFieldErrors(errs);
@@ -220,26 +223,26 @@ function Volunteer() {
                     </div>
                   )}
                   <div>
-                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName}</label>
+                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName} <span className="text-red">*</span></label>
                     <input id="v-name" name="name" type="text" required className={`${inputBase} ${errClass("name")}`} />
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone}</label>
+                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone} <span className="text-red">*</span></label>
                       <input id="v-phone" name="phone" type="tel" required className={`${inputBase} ${errClass("phone")}`} />
                     </div>
                     <div>
-                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email}</label>
-                      <input id="v-email" name="email" type="email" className={`${inputBase} ${errClass("email")}`} />
+                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email} <span className="text-red">*</span></label>
+                      <input id="v-email" name="email" type="email" required className={`${inputBase} ${errClass("email")}`} />
                     </div>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
-                      <input id="v-city" name="city" type="text" className={`${inputBase} ${errClass("city")}`} />
+                      <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city} <span className="text-red">*</span></label>
+                      <input id="v-city" name="city" type="text" required className={`${inputBase} ${errClass("city")}`} />
                     </div>
                     <div>
-                      <label htmlFor="v-blood" className="text-sm font-medium text-foreground">{t.volunteer.bloodGroup}</label>
+                      <label htmlFor="v-blood" className="text-sm font-medium text-foreground">{t.volunteer.bloodGroup} <span className="text-red">*</span></label>
                       <select id="v-blood" name="bloodGroup" defaultValue="" className={`${inputBase} ${errClass("bloodGroup")}`}>
                         <option value="">{t.volunteer.select}</option>
                         {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((b) => (
@@ -250,7 +253,7 @@ function Volunteer() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-gender" className="text-sm font-medium text-foreground">{t.volunteer.gender}</label>
+                      <label htmlFor="v-gender" className="text-sm font-medium text-foreground">{t.volunteer.gender} <span className="text-red">*</span></label>
                       <select id="v-gender" name="gender" defaultValue="" className={`${inputBase} ${errClass("gender")}`}>
                         <option value="">{t.volunteer.select}</option>
                         {t.volunteer.genderOptions.map((g) => (

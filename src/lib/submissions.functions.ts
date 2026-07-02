@@ -30,13 +30,12 @@ const volunteerSchema = z.object({
   email: z
     .string()
     .trim()
+    .min(1, "Email is required")
     .max(255)
-    .optional()
-    .or(z.literal(""))
-    .refine((v) => !v || z.string().email().safeParse(v).success, "Enter a valid email address"),
-  city: optionalText(100),
-  bloodGroup: optionalText(10),
-  gender: optionalText(20),
+    .refine((v) => z.string().email().safeParse(v).success, "Enter a valid email address"),
+  city: z.string().trim().min(1, "City is required").max(100),
+  bloodGroup: z.string().trim().min(1, "Blood group is required").max(10),
+  gender: z.string().trim().min(1, "Gender is required").max(20),
   age: z
     .union([z.literal(""), z.coerce.number().int().min(1).max(120)])
     .optional(),
