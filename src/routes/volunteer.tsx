@@ -45,7 +45,14 @@ function Volunteer() {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [cropSrc, setCropSrc] = useState<string | null>(null);
+  const [interests, setInterests] = useState<string[]>([]);
   const submit = useServerFn(submitVolunteer);
+
+  function toggleInterest(value: string) {
+    setInterests((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  }
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
@@ -97,7 +104,7 @@ function Volunteer() {
       age: String(fd.get("age") || "").trim(),
       occupation: String(fd.get("occupation") || "").trim(),
       availability: String(fd.get("availability") || "").trim(),
-      interests: String(fd.get("interests") || "").trim(),
+      interests: interests.join(", "),
       profilePicturePath: "",
       message: String(fd.get("message") || "").trim(),
     };
@@ -282,8 +289,27 @@ function Volunteer() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="v-interests" className="text-sm font-medium text-foreground">{t.volunteer.interests}</label>
-                    <input id="v-interests" name="interests" type="text" placeholder={t.volunteer.interestsHint} className={`${inputBase} ${errClass("interests")}`} />
+                    <span className="text-sm font-medium text-foreground">{t.volunteer.interests}</span>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{t.volunteer.interestsHint}</p>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                      {t.volunteer.interestsOptions.map((opt) => {
+                        const checked = interests.includes(opt);
+                        return (
+                          <label
+                            key={opt}
+                            className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-3 py-2.5 text-sm transition-colors ${checked ? "border-saffron bg-saffron/10 font-medium text-foreground" : "border-border bg-background text-muted-foreground hover:border-saffron/50"}`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() => toggleInterest(opt)}
+                              className="size-4 shrink-0 accent-saffron"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div>
                     <span className="text-sm font-medium text-foreground">{t.volunteer.photo}</span>
