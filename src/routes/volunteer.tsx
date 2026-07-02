@@ -238,11 +238,11 @@ function Volunteer() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city}</label>
-                      <input id="v-city" name="city" type="text" className={`${inputBase} ${errClass("city")}`} />
+                      <label htmlFor="v-city" className="text-sm font-medium text-foreground">{t.volunteer.city} <span className="text-red">*</span></label>
+                      <input id="v-city" name="city" type="text" required className={`${inputBase} ${errClass("city")}`} />
                     </div>
                     <div>
-                      <label htmlFor="v-blood" className="text-sm font-medium text-foreground">{t.volunteer.bloodGroup}</label>
+                      <label htmlFor="v-blood" className="text-sm font-medium text-foreground">{t.volunteer.bloodGroup} <span className="text-red">*</span></label>
                       <select id="v-blood" name="bloodGroup" defaultValue="" className={`${inputBase} ${errClass("bloodGroup")}`}>
                         <option value="">{t.volunteer.select}</option>
                         {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((b) => (
