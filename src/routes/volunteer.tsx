@@ -228,12 +228,12 @@ function Volunteer() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone}</label>
+                      <label htmlFor="v-phone" className="text-sm font-medium text-foreground">{t.volunteer.phone} <span className="text-red">*</span></label>
                       <input id="v-phone" name="phone" type="tel" required className={`${inputBase} ${errClass("phone")}`} />
                     </div>
                     <div>
-                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email}</label>
-                      <input id="v-email" name="email" type="email" className={`${inputBase} ${errClass("email")}`} />
+                      <label htmlFor="v-email" className="text-sm font-medium text-foreground">{t.volunteer.email} <span className="text-red">*</span></label>
+                      <input id="v-email" name="email" type="email" required className={`${inputBase} ${errClass("email")}`} />
                     </div>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
