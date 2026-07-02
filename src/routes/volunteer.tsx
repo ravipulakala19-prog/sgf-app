@@ -105,7 +105,10 @@ function Volunteer() {
     const errs: Record<string, string> = {};
     if (!values.name) errs.name = t.volunteer.fullName;
     if (!values.phone || !phoneRe.test(values.phone)) errs.phone = t.volunteer.phone;
-    if (values.email && !emailRe.test(values.email)) errs.email = t.volunteer.email;
+    if (!values.email || !emailRe.test(values.email)) errs.email = t.volunteer.email;
+    if (!values.city) errs.city = t.volunteer.city;
+    if (!values.bloodGroup) errs.bloodGroup = t.volunteer.bloodGroup;
+    if (!values.gender) errs.gender = t.volunteer.gender;
 
     if (Object.keys(errs).length > 0) {
       setFieldErrors(errs);
