@@ -253,7 +253,7 @@ function Volunteer() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="v-gender" className="text-sm font-medium text-foreground">{t.volunteer.gender}</label>
+                      <label htmlFor="v-gender" className="text-sm font-medium text-foreground">{t.volunteer.gender} <span className="text-red">*</span></label>
                       <select id="v-gender" name="gender" defaultValue="" className={`${inputBase} ${errClass("gender")}`}>
                         <option value="">{t.volunteer.select}</option>
                         {t.volunteer.genderOptions.map((g) => (
