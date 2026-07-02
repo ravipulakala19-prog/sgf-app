@@ -223,7 +223,7 @@ function Volunteer() {
                     </div>
                   )}
                   <div>
-                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName}</label>
+                    <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName} <span className="text-red">*</span></label>
                     <input id="v-name" name="name" type="text" required className={`${inputBase} ${errClass("name")}`} />
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
