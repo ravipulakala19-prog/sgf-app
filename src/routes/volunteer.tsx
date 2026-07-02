@@ -45,7 +45,14 @@ function Volunteer() {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [cropSrc, setCropSrc] = useState<string | null>(null);
+  const [interests, setInterests] = useState<string[]>([]);
   const submit = useServerFn(submitVolunteer);
+
+  function toggleInterest(value: string) {
+    setInterests((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  }
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
