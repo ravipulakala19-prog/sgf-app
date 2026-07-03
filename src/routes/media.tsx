@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Reveal } from "@/components/sgf/Reveal";
 import { BlurImage } from "@/components/sgf/BlurImage";
-import { useT, useLang } from "@/lib/i18n";
+import { useT, useLanguage } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
 import { galleryImages, pressClippings, pressNewstime, type MediaImage } from "@/lib/media-assets";
 
