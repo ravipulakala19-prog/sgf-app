@@ -20,6 +20,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgramsProgramRouteImport } from './routes/programs.$program'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
 
 const WhatWeDoRoute = WhatWeDoRouteImport.update({
   id: '/what-we-do',
@@ -76,6 +77,11 @@ const ProgramsProgramRoute = ProgramsProgramRouteImport.update({
   path: '/programs/$program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/admin/media',
+  path: '/admin/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/volunteer': typeof VolunteerRoute
   '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/admin/media': typeof AdminMediaRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/volunteer': typeof VolunteerRoute
   '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/admin/media': typeof AdminMediaRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRoutesById {
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/volunteer': typeof VolunteerRoute
   '/volunteers': typeof VolunteersRoute
   '/what-we-do': typeof WhatWeDoRoute
+  '/admin/media': typeof AdminMediaRoute
   '/programs/$program': typeof ProgramsProgramRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/volunteer'
     | '/volunteers'
     | '/what-we-do'
+    | '/admin/media'
     | '/programs/$program'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/volunteer'
     | '/volunteers'
     | '/what-we-do'
+    | '/admin/media'
     | '/programs/$program'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/volunteer'
     | '/volunteers'
     | '/what-we-do'
+    | '/admin/media'
     | '/programs/$program'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +182,7 @@ export interface RootRouteChildren {
   VolunteerRoute: typeof VolunteerRoute
   VolunteersRoute: typeof VolunteersRoute
   WhatWeDoRoute: typeof WhatWeDoRoute
+  AdminMediaRoute: typeof AdminMediaRoute
   ProgramsProgramRoute: typeof ProgramsProgramRoute
 }
 
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsProgramRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/admin/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -266,8 +286,19 @@ const rootRouteChildren: RootRouteChildren = {
   VolunteerRoute: VolunteerRoute,
   VolunteersRoute: VolunteersRoute,
   WhatWeDoRoute: WhatWeDoRoute,
+  AdminMediaRoute: AdminMediaRoute,
   ProgramsProgramRoute: ProgramsProgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

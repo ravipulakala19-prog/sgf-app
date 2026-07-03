@@ -44,6 +44,39 @@ export type Database = {
         }
         Relationships: []
       }
+      media_posts: {
+        Row: {
+          caption_en: string | null
+          caption_te: string | null
+          created_at: string
+          height: number
+          id: string
+          image_url: string
+          section: string
+          width: number
+        }
+        Insert: {
+          caption_en?: string | null
+          caption_te?: string | null
+          created_at?: string
+          height?: number
+          id?: string
+          image_url: string
+          section?: string
+          width?: number
+        }
+        Update: {
+          caption_en?: string | null
+          caption_te?: string | null
+          created_at?: string
+          height?: number
+          id?: string
+          image_url?: string
+          section?: string
+          width?: number
+        }
+        Relationships: []
+      }
       volunteer_signups: {
         Row: {
           age: number | null

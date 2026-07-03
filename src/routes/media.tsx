@@ -1,10 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Quote, X } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Reveal } from "@/components/sgf/Reveal";
 import { BlurImage } from "@/components/sgf/BlurImage";
-import { useT } from "@/lib/i18n";
+import { useT, useLanguage } from "@/lib/i18n";
+import { supabase } from "@/integrations/supabase/client";
 import { galleryImages, pressClippings, pressNewstime, type MediaImage } from "@/lib/media-assets";
+
+const NEUTRAL_BLUR =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlNWU3ZWIiLz48L3N2Zz4=";
+
+type MediaPostRow = {
+  id: string;
+  image_url: string;
+  section: string;
+  caption_en: string | null;
+  caption_te: string | null;
+  width: number;
+  height: number;
+  created_at: string;
+};
 
 export const Route = createFileRoute("/media")({
   head: () => ({
@@ -31,12 +47,46 @@ type LightboxState = { img: MediaImage; caption: string } | null;
 
 function Media() {
   const t = useT();
+  const { lang } = useLanguage();
   const [lightbox, setLightbox] = useState<LightboxState>(null);
-  const gallery = galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle })).reverse();
+
+  const { data: posts = [] } = useQuery({
+    queryKey: ["media_posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("media_posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as MediaPostRow[];
+    },
+  });
+
+  const postToEntry = (p: MediaPostRow) => ({
+    img: {
+      full: p.image_url,
+      thumb: p.image_url,
+      w: p.width,
+      h: p.height,
+      blur: NEUTRAL_BLUR,
+    } as MediaImage,
+    caption: (lang === "te" ? p.caption_te : p.caption_en) || p.caption_en || p.caption_te || "",
+  });
+
+  const dynamicGallery = posts.filter((p) => p.section === "field").map(postToEntry);
+  const dynamicClippings = posts.filter((p) => p.section === "press").map(postToEntry);
+
+  const gallery = [
+    ...dynamicGallery,
+    ...galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle })).reverse(),
+  ];
   const clippings = [
-    { img: pressNewstime, caption: t.media.pressBody },
-    ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
-  ].reverse();
+    ...dynamicClippings,
+    ...[
+      { img: pressNewstime, caption: t.media.pressBody },
+      ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
+    ].reverse(),
+  ];
   const coverage = t.media.coverage;
   return (
     <>
