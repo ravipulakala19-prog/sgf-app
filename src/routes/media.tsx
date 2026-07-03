@@ -1,10 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Quote, X } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Reveal } from "@/components/sgf/Reveal";
 import { BlurImage } from "@/components/sgf/BlurImage";
-import { useT } from "@/lib/i18n";
+import { useT, useLang } from "@/lib/i18n";
+import { supabase } from "@/integrations/supabase/client";
 import { galleryImages, pressClippings, pressNewstime, type MediaImage } from "@/lib/media-assets";
+
+const NEUTRAL_BLUR =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlNWU3ZWIiLz48L3N2Zz4=";
+
+type MediaPostRow = {
+  id: string;
+  image_url: string;
+  section: string;
+  caption_en: string | null;
+  caption_te: string | null;
+  width: number;
+  height: number;
+  created_at: string;
+};
 
 export const Route = createFileRoute("/media")({
   head: () => ({
