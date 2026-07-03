@@ -47,12 +47,46 @@ type LightboxState = { img: MediaImage; caption: string } | null;
 
 function Media() {
   const t = useT();
+  const { lang } = useLanguage();
   const [lightbox, setLightbox] = useState<LightboxState>(null);
-  const gallery = galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle })).reverse();
+
+  const { data: posts = [] } = useQuery({
+    queryKey: ["media_posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("media_posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as MediaPostRow[];
+    },
+  });
+
+  const postToEntry = (p: MediaPostRow) => ({
+    img: {
+      full: p.image_url,
+      thumb: p.image_url,
+      w: p.width,
+      h: p.height,
+      blur: NEUTRAL_BLUR,
+    } as MediaImage,
+    caption: (lang === "te" ? p.caption_te : p.caption_en) || p.caption_en || p.caption_te || "",
+  });
+
+  const dynamicGallery = posts.filter((p) => p.section === "field").map(postToEntry);
+  const dynamicClippings = posts.filter((p) => p.section === "press").map(postToEntry);
+
+  const gallery = [
+    ...dynamicGallery,
+    ...galleryImages.map((img, i) => ({ img, caption: t.media.gallery[i] ?? t.media.fieldTitle })).reverse(),
+  ];
   const clippings = [
-    { img: pressNewstime, caption: t.media.pressBody },
-    ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
-  ].reverse();
+    ...dynamicClippings,
+    ...[
+      { img: pressNewstime, caption: t.media.pressBody },
+      ...pressClippings.map((img, i) => ({ img, caption: t.media.clippings[i] })),
+    ].reverse(),
+  ];
   const coverage = t.media.coverage;
   return (
     <>
