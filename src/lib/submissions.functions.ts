@@ -36,6 +36,14 @@ const volunteerSchema = z.object({
   city: z.string().trim().min(1, "City is required").max(100),
   bloodGroup: z.string().trim().min(1, "Blood group is required").max(10),
   gender: z.string().trim().min(1, "Gender is required").max(20),
+  category: z.enum(["core_team", "volunteer", "blood_donor"]).default("volunteer"),
+  dateOfBirth: z
+    .string()
+    .trim()
+    .max(20)
+    .optional()
+    .or(z.literal(""))
+    .refine((v) => !v || /^\d{4}-\d{2}-\d{2}$/.test(v), "Enter a valid date"),
   age: z
     .union([z.literal(""), z.coerce.number().int().min(1).max(120)])
     .optional(),
@@ -107,25 +115,29 @@ export const submitVolunteer = createServerFn({ method: "POST" })
       city: data.city || null,
       blood_group: data.bloodGroup || null,
       gender: data.gender || null,
+      category: data.category || "volunteer",
+      date_of_birth: data.dateOfBirth || null,
       age: typeof data.age === "number" ? data.age : null,
       occupation: data.occupation || null,
       availability: data.availability || null,
       areas_of_interest: data.interests || null,
       profile_picture_url: data.profilePicturePath || null,
       message: data.message || null,
-    });
+    } as never);
     if (error) {
       console.error("[submitVolunteer] insert failed:", error);
       throw new Error("Could not save your signup. Please try again.");
     }
 
-    await notify(`New volunteer signup: ${data.name}`, [
+    await notify(`New ${data.category || "volunteer"} signup: ${data.name}`, [
       `<strong>Name:</strong> ${data.name}`,
+      `<strong>Category:</strong> ${data.category || "volunteer"}`,
       `<strong>Phone:</strong> ${data.phone}`,
       `<strong>Email:</strong> ${data.email || "—"}`,
-      `<strong>City:</strong> ${data.city || "—"}`,
+      `<strong>Village:</strong> ${data.city || "—"}`,
       `<strong>Blood group:</strong> ${data.bloodGroup || "—"}`,
       `<strong>Gender:</strong> ${data.gender || "—"}`,
+      `<strong>Date of birth:</strong> ${data.dateOfBirth || "—"}`,
       `<strong>Age:</strong> ${typeof data.age === "number" ? data.age : "—"}`,
       `<strong>Occupation:</strong> ${data.occupation || "—"}`,
       `<strong>Availability:</strong> ${data.availability || "—"}`,
