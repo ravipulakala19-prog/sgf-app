@@ -83,8 +83,10 @@ export type Database = {
           areas_of_interest: string | null
           availability: string | null
           blood_group: string | null
+          category: string
           city: string | null
           created_at: string
+          date_of_birth: string | null
           email: string | null
           gender: string | null
           id: string
@@ -99,8 +101,10 @@ export type Database = {
           areas_of_interest?: string | null
           availability?: string | null
           blood_group?: string | null
+          category?: string
           city?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
           gender?: string | null
           id?: string
@@ -115,8 +119,10 @@ export type Database = {
           areas_of_interest?: string | null
           availability?: string | null
           blood_group?: string | null
+          category?: string
           city?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
           gender?: string | null
           id?: string
@@ -130,7 +136,39 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_members: {
+        Row: {
+          blood_group: string | null
+          category: string | null
+          city: string | null
+          created_at: string | null
+          date_of_birth: string | null
+          id: string | null
+          name: string | null
+          profile_picture_url: string | null
+        }
+        Insert: {
+          blood_group?: string | null
+          category?: string | null
+          city?: string | null
+          created_at?: string | null
+          date_of_birth?: string | null
+          id?: string | null
+          name?: string | null
+          profile_picture_url?: string | null
+        }
+        Update: {
+          blood_group?: string | null
+          category?: string | null
+          city?: string | null
+          created_at?: string | null
+          date_of_birth?: string | null
+          id?: string | null
+          name?: string | null
+          profile_picture_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
