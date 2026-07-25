@@ -101,6 +101,8 @@ function Volunteer() {
       city: String(fd.get("city") || "").trim(),
       bloodGroup: String(fd.get("bloodGroup") || "").trim(),
       gender: String(fd.get("gender") || "").trim(),
+      category: (String(fd.get("category") || "volunteer").trim() as "core_team" | "volunteer" | "blood_donor"),
+      dateOfBirth: String(fd.get("dateOfBirth") || "").trim(),
       age: String(fd.get("age") || "").trim(),
       occupation: String(fd.get("occupation") || "").trim(),
       availability: String(fd.get("availability") || "").trim(),
@@ -230,6 +232,14 @@ function Volunteer() {
                     </div>
                   )}
                   <div>
+                    <label htmlFor="v-cat" className="text-sm font-medium text-foreground">{t.volunteer.category} <span className="text-red">*</span></label>
+                    <select id="v-cat" name="category" defaultValue="volunteer" className={`${inputBase} border-border`}>
+                      <option value="core_team">{t.volunteer.categoryOptions.core_team}</option>
+                      <option value="volunteer">{t.volunteer.categoryOptions.volunteer}</option>
+                      <option value="blood_donor">{t.volunteer.categoryOptions.blood_donor}</option>
+                    </select>
+                  </div>
+                  <div>
                     <label htmlFor="v-name" className="text-sm font-medium text-foreground">{t.volunteer.fullName} <span className="text-red">*</span></label>
                     <input id="v-name" name="name" type="text" required className={`${inputBase} ${errClass("name")}`} />
                   </div>
@@ -267,6 +277,16 @@ function Volunteer() {
                           <option key={g} value={g}>{g}</option>
                         ))}
                       </select>
+                    </div>
+                    <div>
+                      <label htmlFor="v-age" className="text-sm font-medium text-foreground">{t.volunteer.age}</label>
+                      <input id="v-age" name="age" type="number" min={1} max={120} className={`${inputBase} ${errClass("age")}`} />
+                    </div>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="v-dob" className="text-sm font-medium text-foreground">{t.volunteer.dateOfBirth}</label>
+                      <input id="v-dob" name="dateOfBirth" type="date" className={`${inputBase} border-border`} />
                     </div>
                     <div>
                       <label htmlFor="v-age" className="text-sm font-medium text-foreground">{t.volunteer.age}</label>
