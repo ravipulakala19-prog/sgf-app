@@ -283,12 +283,11 @@ function Volunteer() {
                       <input id="v-dob" name="dateOfBirth" type="date" className={`${inputBase} border-border`} />
                     </div>
                   </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-3">
                     <div>
                       <label htmlFor="v-age" className="text-sm font-medium text-foreground">{t.volunteer.age}</label>
                       <input id="v-age" name="age" type="number" min={1} max={120} className={`${inputBase} ${errClass("age")}`} />
                     </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="v-occ" className="text-sm font-medium text-foreground">{t.volunteer.occupation}</label>
                       <input id="v-occ" name="occupation" type="text" className={`${inputBase} ${errClass("occupation")}`} />
